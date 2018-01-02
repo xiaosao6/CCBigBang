@@ -22,7 +22,8 @@ class PasteHistoryViewController: UIViewController {
         tmptbView.separatorInset = UIEdgeInsets.zero
         tmptbView.separatorColor = UIColor.lightGray
         tmptbView.tableFooterView = UIView()
-        tmptbView.register(UITableViewCell.self, forCellReuseIdentifier: NSStringFromClass(UITableViewCell.self))
+        tmptbView.rowHeight = 50
+        tmptbView.register(PasteHistoryCell.self, forCellReuseIdentifier: NSStringFromClass(PasteHistoryCell.self))
         return tmptbView
     }()
     
@@ -67,8 +68,9 @@ extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(UITableViewCell.self), for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(PasteHistoryCell.self), for: indexPath) as! PasteHistoryCell
+        cell.contentLabel.text = dataSource[indexPath.row]
+        cell.timeLabel.text = "1月2日 22:19"
         return cell
     }
     
