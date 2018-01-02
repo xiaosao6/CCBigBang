@@ -20,7 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         
-        self.window?.rootViewController = ViewController()
+        let centerViewController = ViewController()
+        let navigationController = UINavigationController.init(rootViewController: centerViewController)
+        
+        let sideViewController = PasteHistoryViewController()
+        let sideNavigationController = UINavigationController.init(rootViewController: sideViewController)
+        
+        let viewDeckController = IIViewDeckController.init(center: navigationController, rightViewController: sideNavigationController)
+        self.window?.rootViewController = viewDeckController
         self.window?.makeKeyAndVisible()
         
         return true

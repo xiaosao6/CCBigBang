@@ -9,6 +9,7 @@
 import UIKit
 import UICollectionViewLeftAlignedLayout
 import MBProgressHUD
+import ViewDeck
 
 let s_width  = UIScreen.main.bounds.width
 let s_height = UIScreen.main.bounds.height
@@ -58,6 +59,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        
+        let historyBtn = UIButton.init(type: .system)
+        historyBtn.setTitle("历史", for: .normal)
+        historyBtn.addTarget(self, action: #selector(historyBtnClicked), for: .touchUpInside)
+        self.view.addSubview(historyBtn)
+        historyBtn.snp.makeConstraints { (make) in
+            make.top.right.equalToSuperview().inset(20)
+        }
         
         let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(gestureRecognizer:)))
         self.view.addGestureRecognizer(gestureRecognizer)
@@ -104,6 +114,10 @@ class ViewController: UIViewController {
             self?.dataSource = models
             self?.collView.reloadData()
         }
+    }
+    
+    @objc private func historyBtnClicked() -> () {
+        viewDeckController?.open(.right, animated: true)
     }
     
     @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {

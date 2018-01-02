@@ -10,6 +10,7 @@
 		26BD753653D6C23A3F268C8A /* Pods_CCBigBang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */; };
 		4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE31FF7CFB3006D06B8 /* WordModel.m */; };
 		4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE61FF7DBD7006D06B8 /* WordCell.swift */; };
+		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
 		45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A31FF6208500C96EC5 /* AppDelegate.swift */; };
 		45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A51FF6208500C96EC5 /* ViewController.swift */; };
 		45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F062AA1FF6208500C96EC5 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		4525FDE21FF7CFB3006D06B8 /* WordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordModel.h; sourceTree = "<group>"; };
 		4525FDE31FF7CFB3006D06B8 /* WordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
 		4525FDE61FF7DBD7006D06B8 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryViewController.swift; sourceTree = "<group>"; };
 		45F062A01FF6208500C96EC5 /* CCBigBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCBigBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F062A31FF6208500C96EC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45F062A51FF6208500C96EC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				45F062A51FF6208500C96EC5 /* ViewController.swift */,
+				452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */,
 				45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */,
 				4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */,
+				452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */,
 				4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */,
 				45F062BF1FF635B500C96EC5 /* HttpUtil.m in Sources */,
 			);
