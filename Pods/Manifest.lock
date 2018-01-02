@@ -1,0 +1,47 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (5.0.7)
+  - Kingfisher (4.6.1)
+  - MBProgressHUD (0.9.2)
+  - MJExtension (3.0.13)
+  - SnapKit (4.0.0)
+  - Toast (3.1.0)
+  - UICollectionViewLeftAlignedLayout (1.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - IQKeyboardManager
+  - Kingfisher
+  - MBProgressHUD (~> 0.9.2)
+  - MJExtension
+  - SnapKit
+  - Toast (~> 3.1.0)
+  - UICollectionViewLeftAlignedLayout
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
+  UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
+
+PODFILE CHECKSUM: fcf6cb2d69705a37dffc74574fa3c83515f0dd95
+
+COCOAPODS: 1.3.1
