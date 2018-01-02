@@ -12,5 +12,6 @@ target "CCBigBang" do
     pod 'MBProgressHUD',            '~> 0.9.2'
     pod 'Toast',                    '~> 3.1.0'
     pod 'IQKeyboardManager'
+    pod 'ViewDeck'
 end
 

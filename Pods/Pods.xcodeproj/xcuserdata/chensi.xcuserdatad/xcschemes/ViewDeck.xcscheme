@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7689EB6870EDA4DD089A03C58CEBBD7E'
-               BlueprintName = 'SnapKit'
+               BlueprintIdentifier = '8D00080A2176ACABAB32521B88ECF9D4'
+               BlueprintName = 'ViewDeck'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SnapKit.framework'>
+               BuildableName = 'ViewDeck.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
