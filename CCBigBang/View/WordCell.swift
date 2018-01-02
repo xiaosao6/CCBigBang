@@ -27,7 +27,7 @@ class WordCell: UICollectionViewCell {
         
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(5)
         }
         
     }

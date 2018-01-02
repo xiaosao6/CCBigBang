@@ -23,6 +23,10 @@ func cellSize(ofLabelSize:CGSize) -> CGSize {
 class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
+    fileprivate var dragStartPt = CGPoint.zero
+    fileprivate var dragging = false
+    fileprivate var selectedIdx = Dictionary<Int, Bool>()
+    fileprivate var lastAccessed = NSIndexPath.init()
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -47,6 +51,7 @@ class ViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 5; flowLayout.minimumLineSpacing = 5
         let tmpcollView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         tmpcollView.showsVerticalScrollIndicator = false
+        tmpcollView.allowsMultipleSelection = true
         tmpcollView.backgroundColor = UIColor.white
         tmpcollView.delegate = self; tmpcollView.dataSource = self
         tmpcollView.register(WordCell.self, forCellWithReuseIdentifier: NSStringFromClass(WordCell.self))
@@ -55,6 +60,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(gestureRecognizer:)))
+        self.view.addGestureRecognizer(gestureRecognizer)
+        gestureRecognizer.minimumNumberOfTouches = 1
+        gestureRecognizer.maximumNumberOfTouches = 1
         
         self.view.addSubview(collView)
         collView.snp.makeConstraints { (make) in
@@ -97,6 +107,14 @@ class ViewController: UIViewController {
             self?.collView.reloadData()
         }
     }
+    
+    @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {
+        
+    }
+    
+    @objc private func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
+        cell?.contentView.backgroundColor = selected ? UIColor.blue : UIColor.init(white: 0.5, alpha: 0.3)
+    }
 
 }
 
@@ -114,7 +132,23 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
         cell.configUI(text: dataSource[indexPath.item].cont)
+        
+        let selected = selectedIdx[indexPath.item] ?? false
+        setCellSelection(cell: cell, selected: selected)
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        setCellSelection(cell: cell, selected: true)
+        selectedIdx.updateValue(true, forKey: indexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        setCellSelection(cell: cell, selected: false)
+        selectedIdx.removeValue(forKey: indexPath.item)
     }
     
 }
