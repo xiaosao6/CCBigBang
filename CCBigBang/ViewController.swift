@@ -23,10 +23,8 @@ func cellSize(ofLabelSize:CGSize) -> CGSize {
 class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
-    fileprivate var dragStartPt = CGPoint.zero
-    fileprivate var dragging = false
     fileprivate var selectedIdx = Dictionary<Int, Bool>()
-    fileprivate var lastAccessed = NSIndexPath.init()
+    fileprivate var lastAccessed = IndexPath.init()
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -109,7 +107,31 @@ class ViewController: UIViewController {
     }
     
     @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {
-        
+        let pointerX = gestureRecognizer.location(in: collView).x
+        let pointerY = gestureRecognizer.location(in: collView).y
+        for cell in collView.visibleCells {
+            let cellSX = cell.frame.origin.x
+            let cellEX = cell.frame.origin.x + cell.frame.size.width
+            let cellSY = cell.frame.origin.y
+            let cellEY = cell.frame.origin.y + cell.frame.size.height
+            if (pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY){
+                let touchOver = collView.indexPath(for: cell) ?? IndexPath.init()
+                if lastAccessed != touchOver{
+                    if cell.isSelected{
+                        collView.deselectItem(at: touchOver, animated: true)
+                        self.collectionView(collView, didDeselectItemAt: touchOver)
+                    } else {
+                        collView.selectItem(at: touchOver, animated: true, scrollPosition: [])
+                        self.collectionView(collView, didSelectItemAt: touchOver)
+                    }
+                }
+                lastAccessed = touchOver
+            }
+        }
+        if gestureRecognizer.state == .ended {
+            lastAccessed = IndexPath.init()
+            collView.isScrollEnabled = true
+        }
     }
     
     @objc private func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
