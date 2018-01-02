@@ -43,14 +43,13 @@ class PasteHistoryViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         let tmpString = UIPasteboard.general.string ?? ""
-        if !dataSource.contains(tmpString) {
-            dataSource.insert(tmpString, at: 0)
-            refreshHistoryCache(newStrs: dataSource)
-        }
+        if dataSource.contains(tmpString) { return }
+        dataSource.insert(tmpString, at: 0)
+        refreshHistoryCache(newStrs: dataSource)
         tbView.reloadData()
     }
     
