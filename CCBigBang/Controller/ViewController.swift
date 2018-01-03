@@ -13,6 +13,8 @@ import ViewDeck
 
 let s_width  = UIScreen.main.bounds.width
 let s_height = UIScreen.main.bounds.height
+let api_key  = "p1C6E1V2Q5urkIxkss9n6NtBKVXXmG9KfTSlnFVk"
+let base_url = "https://api.ltp-cloud.com/analysis/"
 
 func cellSize(ofLabelSize:CGSize) -> CGSize {
     return CGSize(width: ofLabelSize.width + 18, height: ofLabelSize.height + 18*0.5)
@@ -99,12 +101,12 @@ class ViewController: UIViewController {
     
     @objc private func btnClicked() -> () {
         var params = Dictionary<String, String>.init()
-        params.updateValue("p1C6E1V2Q5urkIxkss9n6NtBKVXXmG9KfTSlnFVk", forKey: "api_key")
+        params.updateValue(api_key, forKey: "api_key")
         params.updateValue(inputTV.text, forKey: "text")
         params.updateValue("ws", forKey: "pattern")
         params.updateValue("json", forKey: "format")
         
-        let request = HttpRequest(url: "https://api.ltp-cloud.com/analysis/", params: params)
+        let request = HttpRequest(url: base_url, params: params)
         NSLog("\(request.reqPrint())")
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
