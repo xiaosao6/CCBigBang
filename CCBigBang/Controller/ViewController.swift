@@ -37,7 +37,9 @@ class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
     fileprivate var selectedIdx = Dictionary<Int, Bool>()
-    fileprivate var lastAccessed: IndexPath?
+    /// 当前位置的上一个手势位置
+    fileprivate var lastPath: IndexPath?
+    /// 每次手势的起始位置
     fileprivate var beganPath: IndexPath?
     
     lazy var inputTV: UITextView = {
@@ -51,7 +53,6 @@ class ViewController: UIViewController {
     
     lazy var reqBtn: UIButton = {
         let btn = UIButton.init(type: .system)
-//        btn.backgroundColor = UIColor.lightGray
         btn.setTitle("分词", for: .normal)
         btn.addTarget(self, action: #selector(btnClicked), for: .touchUpInside)
         return btn
@@ -139,14 +140,14 @@ class ViewController: UIViewController {
             if isCell(cell: cell, containsPoint: point) {
                 let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
                 if beganPath == nil { beganPath = touchOver }
-                if lastAccessed != touchOver{
+                if lastPath != touchOver{
                     handlePanSelection(beginPath: beganPath!, currentPath: touchOver)
                 }
-                lastAccessed = touchOver
+                lastPath = touchOver
             }
         }
         if gestureRecognizer.state == .ended {
-            lastAccessed = nil
+            lastPath = nil
             beganPath = nil
             collView.isScrollEnabled = true
         }
@@ -212,4 +213,3 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
 }
-
