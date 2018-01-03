@@ -30,18 +30,25 @@ class PasteHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-
         self.view.backgroundColor = UIColor.white
+        
+        let clearBtn = UIButton.init(type: .system)
+        clearBtn.setTitle("删除全部", for: .normal)
+        clearBtn.addTarget(self, action: #selector(clearClick), for: .touchUpInside)
+        self.view.addSubview(clearBtn)
+        clearBtn.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-15)
+        }
         
         self.view.addSubview(tbView)
         tbView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(50)
+            make.bottom.equalTo(clearBtn.snp.top).offset(-15)
         }
         
-        if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) {
-            dataSource = arr as! Array<String>
-        }
+        if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) { dataSource = arr as! Array<String> }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,12 +62,18 @@ class PasteHistoryViewController: UIViewController {
     }
     
     //MARK: ------------------------ Private
-    fileprivate func refreshHistoryCache(newStrs: [String]) -> () {
+    fileprivate func refreshHistoryCache(newStrs: [String]?) -> () {
         UserDefaults.standard.set(newStrs, forKey: pasteHistoryCacheKey)
         UserDefaults.standard.synchronize()
     }
-
+    
+    @objc private func clearClick() -> () {
+        refreshHistoryCache(newStrs: nil)
+        dataSource.removeAll()
+        tbView.reloadData()
+    }
 }
+
 extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
