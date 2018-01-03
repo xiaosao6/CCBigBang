@@ -141,7 +141,14 @@ class ViewController: UIViewController {
                 let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
                 if beganPath == nil { beganPath = touchOver }
                 if lastPath != touchOver{
-                    handlePanSelection(beginPath: beganPath!, currentPath: touchOver)
+                    let beginPath = beganPath!
+                    let originSelected = selectedIdx[beginPath.item] ?? false
+                    
+                    let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+                        return (indexPath.item > beginPath.item && indexPath.item <= touchOver.item) ||
+                            (indexPath.item < beginPath.item && indexPath.item >= touchOver.item)
+                    }
+                    for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
                 }
                 lastPath = touchOver
             }
@@ -151,16 +158,6 @@ class ViewController: UIViewController {
             beganPath = nil
             collView.isScrollEnabled = true
         }
-    }
-    
-    @objc private func handlePanSelection(beginPath: IndexPath, currentPath:IndexPath) -> () {
-        let originSelected = selectedIdx[beginPath.item] ?? false
-        
-        let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-            return (indexPath.item > beginPath.item && indexPath.item <= currentPath.item) ||
-                   (indexPath.item < beginPath.item && indexPath.item >= currentPath.item)
-        }
-        for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
     }
     
     @objc private func togglePathSelection(path: IndexPath, selected: Bool) -> () {
