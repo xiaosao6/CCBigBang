@@ -37,8 +37,6 @@ class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
     fileprivate var selectedPaths = Set<IndexPath>()
-    /// 当前位置的上一个手势位置
-    fileprivate var lastPath: IndexPath?
     /// 每次手势的起始位置
     fileprivate var beganPath: IndexPath?
     
@@ -140,21 +138,17 @@ class ViewController: UIViewController {
             if isCell(cell: cell, containsPoint: point) {
                 let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
                 if beganPath == nil { beganPath = touchOver }
-                if lastPath != touchOver{
-                    let beginPath = beganPath!
-                    let originSelected = selectedPaths.contains(beginPath)
-                    
-                    let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                        return (indexPath.item > beginPath.item && indexPath.item <= touchOver.item) ||
-                            (indexPath.item < beginPath.item && indexPath.item >= touchOver.item)
-                    }
-                    for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
+                let beginPath = beganPath!
+                let originSelected = selectedPaths.contains(beginPath)
+                
+                let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+                    return (indexPath.item > beginPath.item && indexPath.item <= touchOver.item) ||
+                        (indexPath.item < beginPath.item && indexPath.item >= touchOver.item)
                 }
-                lastPath = touchOver
+                for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
             }
         }
         if gestureRecognizer.state == .ended {
-            lastPath = nil
             beganPath = nil
             collView.isScrollEnabled = true
         }
