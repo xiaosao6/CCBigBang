@@ -20,6 +20,16 @@ func cellSize(ofLabelSize:CGSize) -> CGSize {
     return CGSize(width: ofLabelSize.width + 18, height: ofLabelSize.height + 18*0.5)
 }
 
+func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
+    let cellSX = cell.frame.origin.x
+    let cellEX = cell.frame.origin.x + cell.frame.size.width
+    let cellSY = cell.frame.origin.y
+    let cellEY = cell.frame.origin.y + cell.frame.size.height
+    let pointerX = containsPoint.x
+    let pointerY = containsPoint.y
+    return pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY
+}
+
 
 // 注意：全局定义WordCell的字体大小
 
@@ -28,6 +38,7 @@ class ViewController: UIViewController {
     fileprivate var dataSource = [WordModel]()
     fileprivate var selectedIdx = Dictionary<Int, Bool>()
     fileprivate var lastAccessed: IndexPath?
+    fileprivate var beganPath: IndexPath?
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -123,30 +134,41 @@ class ViewController: UIViewController {
     }
     
     @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {
-        let pointerX = gestureRecognizer.location(in: collView).x
-        let pointerY = gestureRecognizer.location(in: collView).y
+        let point = gestureRecognizer.location(in: collView)
         for cell in collView.visibleCells {
-            let cellSX = cell.frame.origin.x
-            let cellEX = cell.frame.origin.x + cell.frame.size.width
-            let cellSY = cell.frame.origin.y
-            let cellEY = cell.frame.origin.y + cell.frame.size.height
-            if (pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY){
-                let touchOver = collView.indexPath(for: cell) ?? IndexPath.init()
+            if isCell(cell: cell, containsPoint: point) {
+                let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
+                if beganPath == nil { beganPath = touchOver }
                 if lastAccessed != touchOver{
-                    if cell.isSelected{
-                        collView.deselectItem(at: touchOver, animated: true)
-                        self.collectionView(collView, didDeselectItemAt: touchOver)
-                    } else {
-                        collView.selectItem(at: touchOver, animated: true, scrollPosition: [])
-                        self.collectionView(collView, didSelectItemAt: touchOver)
-                    }
+                    handlePanSelection(beginPath: beganPath!, currentPath: touchOver)
                 }
                 lastAccessed = touchOver
             }
         }
         if gestureRecognizer.state == .ended {
             lastAccessed = nil
+            beganPath = nil
             collView.isScrollEnabled = true
+        }
+    }
+    
+    @objc private func handlePanSelection(beginPath: IndexPath, currentPath:IndexPath) -> () {
+        let originSelected = selectedIdx[beginPath.item] ?? false
+        
+        let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+            return (indexPath.item > beginPath.item && indexPath.item <= currentPath.item) ||
+                   (indexPath.item < beginPath.item && indexPath.item >= currentPath.item)
+        }
+        for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
+    }
+    
+    @objc private func togglePathSelection(path: IndexPath, selected: Bool) -> () {
+        if selected {
+            collView.deselectItem(at: path, animated: true)
+            self.collectionView(collView, didDeselectItemAt: path)
+        } else {
+            collView.selectItem(at: path, animated: true, scrollPosition: [])
+            self.collectionView(collView, didSelectItemAt: path)
         }
     }
     
