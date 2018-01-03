@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
     fileprivate var selectedIdx = Dictionary<Int, Bool>()
-    fileprivate var lastAccessed = IndexPath.init()
+    fileprivate var lastAccessed: IndexPath?
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     
     lazy var reqBtn: UIButton = {
         let btn = UIButton.init(type: .system)
-        btn.backgroundColor = UIColor.lightGray
+//        btn.backgroundColor = UIColor.lightGray
         btn.setTitle("分词", for: .normal)
         btn.addTarget(self, action: #selector(btnClicked), for: .touchUpInside)
         return btn
@@ -145,7 +145,7 @@ class ViewController: UIViewController {
             }
         }
         if gestureRecognizer.state == .ended {
-            lastAccessed = IndexPath.init()
+            lastAccessed = nil
             collView.isScrollEnabled = true
         }
     }
