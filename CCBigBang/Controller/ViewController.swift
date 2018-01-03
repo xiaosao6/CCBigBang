@@ -36,7 +36,7 @@ func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
 class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
-    fileprivate var selectedIdx = Dictionary<Int, Bool>()
+    fileprivate var selectedPaths = Set<IndexPath>()
     /// 当前位置的上一个手势位置
     fileprivate var lastPath: IndexPath?
     /// 每次手势的起始位置
@@ -142,7 +142,7 @@ class ViewController: UIViewController {
                 if beganPath == nil { beganPath = touchOver }
                 if lastPath != touchOver{
                     let beginPath = beganPath!
-                    let originSelected = selectedIdx[beginPath.item] ?? false
+                    let originSelected = selectedPaths.contains(beginPath)
                     
                     let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
                         return (indexPath.item > beginPath.item && indexPath.item <= touchOver.item) ||
@@ -191,7 +191,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
         cell.configUI(text: dataSource[indexPath.item].cont)
         
-        let selected = selectedIdx[indexPath.item] ?? false
+        let selected = selectedPaths.contains(indexPath)
         setCellSelection(cell: cell, selected: selected)
         
         return cell
@@ -200,13 +200,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         setCellSelection(cell: cell, selected: true)
-        selectedIdx.updateValue(true, forKey: indexPath.item)
+        selectedPaths.insert(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         setCellSelection(cell: cell, selected: false)
-        selectedIdx.removeValue(forKey: indexPath.item)
+        selectedPaths.remove(indexPath)
     }
     
 }
