@@ -37,6 +37,8 @@ class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
     fileprivate var selectedPaths = Set<IndexPath>()
+    fileprivate var tmpPanPaths = Set<IndexPath>()
+    fileprivate var isPanning = false
     /// 每次手势的起始位置
     fileprivate var beganPath: IndexPath?
     
@@ -134,33 +136,33 @@ class ViewController: UIViewController {
     
     @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {
         let point = gestureRecognizer.location(in: collView)
-        for cell in collView.visibleCells {
-            if isCell(cell: cell, containsPoint: point) {
-                let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
-                if beganPath == nil { beganPath = touchOver }
-                let beginPath = beganPath!
-                let originSelected = selectedPaths.contains(beginPath)
-                
-                let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                    return (indexPath.item > beginPath.item && indexPath.item <= touchOver.item) ||
-                        (indexPath.item < beginPath.item && indexPath.item >= touchOver.item)
-                }
-                for path in pathSerial { togglePathSelection(path: path, selected: originSelected) }
+        isPanning = true
+
+        var touchingCell: UICollectionViewCell? = nil
+        for cell_ in collView.visibleCells {
+            if isCell(cell: cell_, containsPoint: point) {
+                touchingCell = cell_; break
             }
         }
+        if let cell = touchingCell {
+            let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
+            if beganPath == nil { beganPath = touchOver }
+            let beginPath = beganPath!
+            
+            let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+                return (indexPath.item >= beginPath.item && indexPath.item <= touchOver.item) ||
+                       (indexPath.item <= beginPath.item && indexPath.item >= touchOver.item)
+            }
+            tmpPanPaths = Set.init(pathSerial)
+            collView.reloadData()
+        }
+        
         if gestureRecognizer.state == .ended {
+            isPanning = false
+            selectedPaths = selectedPaths.union(tmpPanPaths)
+            tmpPanPaths.removeAll()
             beganPath = nil
             collView.isScrollEnabled = true
-        }
-    }
-    
-    @objc private func togglePathSelection(path: IndexPath, selected: Bool) -> () {
-        if selected {
-            collView.deselectItem(at: path, animated: true)
-            self.collectionView(collView, didDeselectItemAt: path)
-        } else {
-            collView.selectItem(at: path, animated: true, scrollPosition: [])
-            self.collectionView(collView, didSelectItemAt: path)
         }
     }
     
@@ -185,9 +187,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
         cell.configUI(text: dataSource[indexPath.item].cont)
         
-        let selected = selectedPaths.contains(indexPath)
-        setCellSelection(cell: cell, selected: selected)
-        
+        if isPanning {
+            let selected = selectedPaths.union(tmpPanPaths).contains(indexPath)
+            setCellSelection(cell: cell, selected: selected)
+        } else {
+            let selected = selectedPaths.contains(indexPath)
+            setCellSelection(cell: cell, selected: selected)
+        }
         return cell
     }
     
