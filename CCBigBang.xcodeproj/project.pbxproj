@@ -22,6 +22,8 @@
 		45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F9597B1FFE0A16004A1305 /* TodayViewController.swift */; };
 		45F9597F1FFE0A16004A1305 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */; };
 		45F959831FFE0A16004A1305 /* CCBigBangExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 45F959771FFE0A16004A1305 /* CCBigBangExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		45F959901FFE1CC0004A1305 /* ExtWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F9598F1FFE1CC0004A1305 /* ExtWordCell.swift */; };
+		AF3ECF06E9CC472AF8726DB6 /* Pods_CCBigBangExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181E20E13DF43DACABE650E /* Pods_CCBigBangExt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +75,12 @@
 		45F959801FFE0A16004A1305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F959881FFE0C66004A1305 /* CCBigBangExt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CCBigBangExt.entitlements; sourceTree = "<group>"; };
 		45F959891FFE0CAE004A1305 /* CCBigBang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CCBigBang.entitlements; sourceTree = "<group>"; };
+		45F9598A1FFE1C48004A1305 /* CCBigBangExt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCBigBangExt-Bridging-Header.h"; sourceTree = "<group>"; };
+		45F9598F1FFE1CC0004A1305 /* ExtWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtWordCell.swift; sourceTree = "<group>"; };
+		B181E20E13DF43DACABE650E /* Pods_CCBigBangExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCBigBangExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B562178D7629C093EEEFE12B /* Pods-CCBigBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBang.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBang/Pods-CCBigBang.release.xcconfig"; sourceTree = "<group>"; };
+		DA34E8160E2A3712E7611114 /* Pods-CCBigBangExt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBangExt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBangExt/Pods-CCBigBangExt.debug.xcconfig"; sourceTree = "<group>"; };
+		DF46581CB2AD97A1A7457C2A /* Pods-CCBigBangExt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBangExt.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBangExt/Pods-CCBigBangExt.release.xcconfig"; sourceTree = "<group>"; };
 		DFA6A0EF692243F7A50444CC /* Pods-CCBigBang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBang/Pods-CCBigBang.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F959791FFE0A16004A1305 /* NotificationCenter.framework in Frameworks */,
+				AF3ECF06E9CC472AF8726DB6 /* Pods_CCBigBangExt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +110,8 @@
 			children = (
 				DFA6A0EF692243F7A50444CC /* Pods-CCBigBang.debug.xcconfig */,
 				B562178D7629C093EEEFE12B /* Pods-CCBigBang.release.xcconfig */,
+				DA34E8160E2A3712E7611114 /* Pods-CCBigBangExt.debug.xcconfig */,
+				DF46581CB2AD97A1A7457C2A /* Pods-CCBigBangExt.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -192,12 +202,22 @@
 		45F9597A1FFE0A16004A1305 /* CCBigBangExt */ = {
 			isa = PBXGroup;
 			children = (
-				45F959881FFE0C66004A1305 /* CCBigBangExt.entitlements */,
+				45F9598E1FFE1C9E004A1305 /* View */,
 				45F9597B1FFE0A16004A1305 /* TodayViewController.swift */,
-				45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */,
+				45F9598A1FFE1C48004A1305 /* CCBigBangExt-Bridging-Header.h */,
 				45F959801FFE0A16004A1305 /* Info.plist */,
+				45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */,
+				45F959881FFE0C66004A1305 /* CCBigBangExt.entitlements */,
 			);
 			path = CCBigBangExt;
+			sourceTree = "<group>";
+		};
+		45F9598E1FFE1C9E004A1305 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45F9598F1FFE1CC0004A1305 /* ExtWordCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		81458A2D568333464B9833B2 /* Frameworks */ = {
@@ -205,6 +225,7 @@
 			children = (
 				19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */,
 				45F959781FFE0A16004A1305 /* NotificationCenter.framework */,
+				B181E20E13DF43DACABE650E /* Pods_CCBigBangExt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,9 +259,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45F959861FFE0A16004A1305 /* Build configuration list for PBXNativeTarget "CCBigBangExt" */;
 			buildPhases = (
+				8E1085664EFFD10C27A5EBDD /* [CP] Check Pods Manifest.lock */,
 				45F959731FFE0A16004A1305 /* Sources */,
 				45F959741FFE0A16004A1305 /* Frameworks */,
 				45F959751FFE0A16004A1305 /* Resources */,
+				D77637161544461B4B14ADAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +296,7 @@
 					};
 					45F959761FFE0A16004A1305 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -373,6 +397,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCBigBang/Pods-CCBigBang-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8E1085664EFFD10C27A5EBDD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CCBigBangExt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D1E571C1F0B5C8B43E14B43E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,6 +431,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D77637161544461B4B14ADAC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCBigBangExt/Pods-CCBigBangExt-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -414,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */,
+				45F959901FFE1CC0004A1305 /* ExtWordCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,7 +657,9 @@
 		};
 		45F959841FFE0A16004A1305 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA34E8160E2A3712E7611114 /* Pods-CCBigBangExt.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CCBigBangExt/CCBigBangExt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LXTMZWPQ5S;
@@ -609,6 +669,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcbdoor.CCBigBang.CCBigBangExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CCBigBangExt/CCBigBangExt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -616,7 +678,9 @@
 		};
 		45F959851FFE0A16004A1305 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF46581CB2AD97A1A7457C2A /* Pods-CCBigBangExt.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CCBigBangExt/CCBigBangExt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LXTMZWPQ5S;
@@ -626,6 +690,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcbdoor.CCBigBang.CCBigBangExt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CCBigBangExt/CCBigBangExt-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
