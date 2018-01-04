@@ -36,9 +36,20 @@ func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
 class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
+    
     fileprivate var selectedPaths = Set<IndexPath>()
     fileprivate var tmpPanPaths = Set<IndexPath>()
+    
     fileprivate var isPanning = false
+    fileprivate var isPanDeleting: Bool{
+        get{
+            if let began = beganPath {
+                return selectedPaths.contains(began)
+            } else {
+                return false
+            }
+        }
+    }
     /// 每次手势的起始位置
     fileprivate var beganPath: IndexPath?
     /// 当前位置的前一个触摸位置
@@ -167,7 +178,11 @@ class ViewController: UIViewController {
         if gestureRecognizer.state == .ended {
             prevTouchPath = nil
             isPanning = false
-            selectedPaths = selectedPaths.union(tmpPanPaths)
+            if isPanDeleting {
+                selectedPaths = selectedPaths.subtracting(tmpPanPaths)
+            } else {
+                selectedPaths = selectedPaths.union(tmpPanPaths)
+            }
             tmpPanPaths.removeAll()
             beganPath = nil
             collView.isScrollEnabled = true
@@ -204,8 +219,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         cell.configUI(text: dataSource[indexPath.item].cont)
         
         if isPanning {
-            let selected = selectedPaths.union(tmpPanPaths).contains(indexPath)
-            setCellSelection(cell: cell, selected: selected)
+            if isPanDeleting {
+                let selected = selectedPaths.subtracting(tmpPanPaths).contains(indexPath)
+                setCellSelection(cell: cell, selected: selected)
+            } else {
+                let selected = selectedPaths.union(tmpPanPaths).contains(indexPath)
+                setCellSelection(cell: cell, selected: selected)
+            }
         } else {
             let selected = selectedPaths.contains(indexPath)
             setCellSelection(cell: cell, selected: selected)
