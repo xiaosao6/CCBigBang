@@ -177,18 +177,26 @@ class ViewController: UIViewController {
     @objc private func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
         cell?.contentView.backgroundColor = selected ? UIColor.blue : UIColor.init(white: 0.5, alpha: 0.3)
     }
+    
+    @objc fileprivate func toggleSelectState(_ indexPath: IndexPath) -> () {
+        let cell = collView.cellForItem(at: indexPath)
+        if selectedPaths.contains(indexPath) {
+            setCellSelection(cell: cell, selected: false)
+            selectedPaths.remove(indexPath)
+        } else {
+            setCellSelection(cell: cell, selected: true)
+            selectedPaths.insert(indexPath)
+        }
+    }
 
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.count
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return dataSource.count }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let osize = dataSource[indexPath.item].rectSize
-        return cellSize(ofLabelSize: osize)
+        return cellSize(ofLabelSize: dataSource[indexPath.item].rectSize)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -206,15 +214,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        setCellSelection(cell: cell, selected: true)
-        selectedPaths.insert(indexPath)
+        toggleSelectState(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        setCellSelection(cell: cell, selected: false)
-        selectedPaths.remove(indexPath)
+        toggleSelectState(indexPath)
     }
     
 }
