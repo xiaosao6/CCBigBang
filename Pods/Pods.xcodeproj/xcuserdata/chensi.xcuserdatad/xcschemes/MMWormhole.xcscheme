@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '47891F14A60A34A805D451D6DF21A5C5'
-               BlueprintName = 'UICollectionViewLeftAlignedLayout'
+               BlueprintIdentifier = '5C8B0A5762D4572F2D507F7315F54FFA'
+               BlueprintName = 'MMWormhole'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'UICollectionViewLeftAlignedLayout.framework'>
+               BuildableName = 'MMWormhole.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

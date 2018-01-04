@@ -9,6 +9,7 @@ target "CCBigBang" do
     pod 'UICollectionViewLeftAlignedLayout'
 #    pod 'RxSwift'
 #    pod 'RxCocoa'
+    pod 'MMWormhole'
     pod 'MBProgressHUD',            '~> 0.9.2'
     pod 'Toast',                    '~> 3.1.0'
     pod 'IQKeyboardManager'
