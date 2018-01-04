@@ -41,6 +41,8 @@ class ViewController: UIViewController {
     fileprivate var isPanning = false
     /// 每次手势的起始位置
     fileprivate var beganPath: IndexPath?
+    /// 当前位置的前一个触摸位置
+    fileprivate var prevTouchPath: IndexPath?
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -138,26 +140,32 @@ class ViewController: UIViewController {
         let point = gestureRecognizer.location(in: collView)
         isPanning = true
 
-        var touchingCell: UICollectionViewCell? = nil
-        for cell_ in collView.visibleCells {
-            if isCell(cell: cell_, containsPoint: point) {
-                touchingCell = cell_; break
-            }
-        }
+        let touchingCell = collView.visibleCells.filter { (cell_) -> Bool in
+            return isCell(cell: cell_, containsPoint: point)
+        }.last
+
         if let cell = touchingCell {
             let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
-            if beganPath == nil { beganPath = touchOver }
-            let beginPath = beganPath!
+            if beganPath == nil { beganPath = touchOver } // 一次手势的起始位置
             
-            let pathSerial = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                return (indexPath.item >= beginPath.item && indexPath.item <= touchOver.item) ||
-                       (indexPath.item <= beginPath.item && indexPath.item >= touchOver.item)
+            if touchOver != prevTouchPath {
+                let began2CurrentPaths = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+                    return (indexPath.item >= beganPath!.item && indexPath.item <= touchOver.item) ||
+                        (indexPath.item <= beganPath!.item && indexPath.item >= touchOver.item)
+                }
+                tmpPanPaths = Set.init(began2CurrentPaths)
+                
+                let prev2CurrentPaths = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+                    return (indexPath.item >= prevTouchPath?.item ?? 0 && indexPath.item <= touchOver.item) ||
+                        (indexPath.item <= prevTouchPath?.item ?? 0 && indexPath.item >= touchOver.item)
+                }
+                UIView.performWithoutAnimation { collView.reloadItems(at: prev2CurrentPaths) }
             }
-            tmpPanPaths = Set.init(pathSerial)
-            collView.reloadData()
+            prevTouchPath = touchOver
         }
         
         if gestureRecognizer.state == .ended {
+            prevTouchPath = nil
             isPanning = false
             selectedPaths = selectedPaths.union(tmpPanPaths)
             tmpPanPaths.removeAll()
