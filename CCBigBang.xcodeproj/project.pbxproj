@@ -18,7 +18,35 @@
 		45F062AE1FF6208500C96EC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F062AC1FF6208500C96EC5 /* LaunchScreen.storyboard */; };
 		45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F062B71FF635B500C96EC5 /* HttpRequest.m */; };
 		45F062BF1FF635B500C96EC5 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F062BC1FF635B500C96EC5 /* HttpUtil.m */; };
+		45F959791FFE0A16004A1305 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F959781FFE0A16004A1305 /* NotificationCenter.framework */; };
+		45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F9597B1FFE0A16004A1305 /* TodayViewController.swift */; };
+		45F9597F1FFE0A16004A1305 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */; };
+		45F959831FFE0A16004A1305 /* CCBigBangExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 45F959771FFE0A16004A1305 /* CCBigBangExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45F959811FFE0A16004A1305 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45F062981FF6208500C96EC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45F959761FFE0A16004A1305;
+			remoteInfo = CCBigBangExt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45F959871FFE0A16004A1305 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				45F959831FFE0A16004A1305 /* CCBigBangExt.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCBigBang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +66,11 @@
 		45F062B81FF635B500C96EC5 /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
 		45F062BB1FF635B500C96EC5 /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
 		45F062BC1FF635B500C96EC5 /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		45F959771FFE0A16004A1305 /* CCBigBangExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CCBigBangExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		45F959781FFE0A16004A1305 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		45F9597B1FFE0A16004A1305 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		45F9597E1FFE0A16004A1305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		45F959801FFE0A16004A1305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B562178D7629C093EEEFE12B /* Pods-CCBigBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBang.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBang/Pods-CCBigBang.release.xcconfig"; sourceTree = "<group>"; };
 		DFA6A0EF692243F7A50444CC /* Pods-CCBigBang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBigBang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CCBigBang/Pods-CCBigBang.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,6 +81,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				26BD753653D6C23A3F268C8A /* Pods_CCBigBang.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45F959741FFE0A16004A1305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F959791FFE0A16004A1305 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				45F062A21FF6208500C96EC5 /* CCBigBang */,
+				45F9597A1FFE0A16004A1305 /* CCBigBangExt */,
 				45F062A11FF6208500C96EC5 /* Products */,
 				3DF6441EBFDF55583E268C37 /* Pods */,
 				81458A2D568333464B9833B2 /* Frameworks */,
@@ -113,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				45F062A01FF6208500C96EC5 /* CCBigBang.app */,
+				45F959771FFE0A16004A1305 /* CCBigBangExt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,10 +186,21 @@
 			path = HttpUtil;
 			sourceTree = "<group>";
 		};
+		45F9597A1FFE0A16004A1305 /* CCBigBangExt */ = {
+			isa = PBXGroup;
+			children = (
+				45F9597B1FFE0A16004A1305 /* TodayViewController.swift */,
+				45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */,
+				45F959801FFE0A16004A1305 /* Info.plist */,
+			);
+			path = CCBigBangExt;
+			sourceTree = "<group>";
+		};
 		81458A2D568333464B9833B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */,
+				45F959781FFE0A16004A1305 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,15 +218,34 @@
 				45F0629E1FF6208500C96EC5 /* Resources */,
 				3538336DF80AC958A74BA768 /* [CP] Embed Pods Frameworks */,
 				063FE49159724E6B22C34202 /* [CP] Copy Pods Resources */,
+				45F959871FFE0A16004A1305 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				45F959821FFE0A16004A1305 /* PBXTargetDependency */,
 			);
 			name = CCBigBang;
 			productName = CCBigBang;
 			productReference = 45F062A01FF6208500C96EC5 /* CCBigBang.app */;
 			productType = "com.apple.product-type.application";
+		};
+		45F959761FFE0A16004A1305 /* CCBigBangExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45F959861FFE0A16004A1305 /* Build configuration list for PBXNativeTarget "CCBigBangExt" */;
+			buildPhases = (
+				45F959731FFE0A16004A1305 /* Sources */,
+				45F959741FFE0A16004A1305 /* Frameworks */,
+				45F959751FFE0A16004A1305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCBigBangExt;
+			productName = CCBigBangExt;
+			productReference = 45F959771FFE0A16004A1305 /* CCBigBangExt.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -187,6 +260,10 @@
 					45F0629F1FF6208500C96EC5 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+					};
+					45F959761FFE0A16004A1305 = {
+						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -205,6 +282,7 @@
 			projectRoot = "";
 			targets = (
 				45F0629F1FF6208500C96EC5 /* CCBigBang */,
+				45F959761FFE0A16004A1305 /* CCBigBangExt */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +294,14 @@
 			files = (
 				45F062AE1FF6208500C96EC5 /* LaunchScreen.storyboard in Resources */,
 				45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45F959751FFE0A16004A1305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F9597F1FFE0A16004A1305 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +393,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45F959731FFE0A16004A1305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45F959821FFE0A16004A1305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45F959761FFE0A16004A1305 /* CCBigBangExt */;
+			targetProxy = 45F959811FFE0A16004A1305 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		45F062AC1FF6208500C96EC5 /* LaunchScreen.storyboard */ = {
@@ -316,6 +418,14 @@
 				45F062AD1FF6208500C96EC5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		45F9597D1FFE0A16004A1305 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45F9597E1FFE0A16004A1305 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -432,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DFA6A0EF692243F7A50444CC /* Pods-CCBigBang.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B562178D7629C093EEEFE12B /* Pods-CCBigBang.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -462,6 +574,38 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcbdoor.CCBigBang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CCBigBang/CCBigBang-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		45F959841FFE0A16004A1305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LXTMZWPQ5S;
+				INFOPLIST_FILE = CCBigBangExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pcbdoor.CCBigBang.CCBigBangExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		45F959851FFE0A16004A1305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LXTMZWPQ5S;
+				INFOPLIST_FILE = CCBigBangExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pcbdoor.CCBigBang.CCBigBangExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -484,6 +628,15 @@
 			buildConfigurations = (
 				45F062B31FF6208500C96EC5 /* Debug */,
 				45F062B41FF6208500C96EC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45F959861FFE0A16004A1305 /* Build configuration list for PBXNativeTarget "CCBigBangExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45F959841FFE0A16004A1305 /* Debug */,
+				45F959851FFE0A16004A1305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
