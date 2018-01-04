@@ -14,7 +14,13 @@ let pasteHistoryCacheKey = "PasteHistoryCacheKey"
 /// 剪贴板历史界面
 class PasteHistoryViewController: UIViewController {
     
-    fileprivate var dataSource = [String]()
+    fileprivate var dataSource = [Dictionary<String, Date>]()
+    
+    lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter.init()
+        formatter.dateFormat = "M月d日 HH:mm"
+        return formatter
+    }()
     
     lazy var tbView: UITableView = {
         let tmptbView = UITableView.init(frame: CGRect.zero, style: .plain)
@@ -48,21 +54,25 @@ class PasteHistoryViewController: UIViewController {
             make.bottom.equalTo(clearBtn.snp.top).offset(-15)
         }
         
-        if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) { dataSource = arr as! Array<String> }
+        if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) {
+            dataSource = arr as! Array<[String:Date]>
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tmpString = UIPasteboard.general.string ?? ""
-        if dataSource.contains(tmpString) { return }
-        dataSource.insert(tmpString, at: 0)
+        if dataSource.map({ (dict) -> String in
+            return dict.keys.first ?? ""
+        }).contains(tmpString) { return }
+        dataSource.insert([tmpString: Date.init()], at: 0)
         refreshHistoryCache(newStrs: dataSource)
         tbView.reloadData()
     }
     
     //MARK: ------------------------ Private
-    fileprivate func refreshHistoryCache(newStrs: [String]?) -> () {
+    fileprivate func refreshHistoryCache(newStrs: [[String:Date]]?) -> () {
         UserDefaults.standard.set(newStrs, forKey: pasteHistoryCacheKey)
         UserDefaults.standard.synchronize()
     }
@@ -82,8 +92,8 @@ extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(PasteHistoryCell.self), for: indexPath) as! PasteHistoryCell
-        cell.contentLabel.text = dataSource[indexPath.row]
-        cell.timeLabel.text = "1月2日 22:19"
+        cell.contentLabel.text = dataSource[indexPath.row].keys.first
+        cell.timeLabel.text = dateFormatter.string(from: dataSource[indexPath.row].values.first ?? Date())
         return cell
     }
     
