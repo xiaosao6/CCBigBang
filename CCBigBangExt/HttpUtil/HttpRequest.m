@@ -3,7 +3,7 @@
 #import "HttpRequest.h"
 
 //超时设置
-static const double HTTP_TIMEOUT = 15.0;
+static const double HTTP_TIMEOUT = 10.0;
 
 @implementation HttpRequest
 
