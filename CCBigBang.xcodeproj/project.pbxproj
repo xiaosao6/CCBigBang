@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		26BD753653D6C23A3F268C8A /* Pods_CCBigBang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */; };
+		451333F61FFF1961000EF74D /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F31FFF1960000EF74D /* HttpUtil.m */; };
+		451333F71FFF1961000EF74D /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F51FFF1961000EF74D /* HttpRequest.m */; };
+		451333FB1FFF1982000EF74D /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333FA1FFF1982000EF74D /* WordModel.m */; };
 		4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE31FF7CFB3006D06B8 /* WordModel.m */; };
 		4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE61FF7DBD7006D06B8 /* WordCell.swift */; };
 		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
@@ -52,6 +55,12 @@
 
 /* Begin PBXFileReference section */
 		19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCBigBang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		451333F21FFF1960000EF74D /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		451333F31FFF1960000EF74D /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		451333F41FFF1960000EF74D /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		451333F51FFF1961000EF74D /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
+		451333F91FFF1982000EF74D /* WordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordModel.h; sourceTree = "<group>"; };
+		451333FA1FFF1982000EF74D /* WordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
 		4525FDE21FF7CFB3006D06B8 /* WordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordModel.h; sourceTree = "<group>"; };
 		4525FDE31FF7CFB3006D06B8 /* WordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
 		4525FDE61FF7DBD7006D06B8 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
@@ -114,6 +123,26 @@
 				DF46581CB2AD97A1A7457C2A /* Pods-CCBigBangExt.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		451333F11FFF1943000EF74D /* HttpUtil */ = {
+			isa = PBXGroup;
+			children = (
+				451333F21FFF1960000EF74D /* HttpRequest.h */,
+				451333F51FFF1961000EF74D /* HttpRequest.m */,
+				451333F41FFF1960000EF74D /* HttpUtil.h */,
+				451333F31FFF1960000EF74D /* HttpUtil.m */,
+			);
+			path = HttpUtil;
+			sourceTree = "<group>";
+		};
+		451333F81FFF1969000EF74D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				451333F91FFF1982000EF74D /* WordModel.h */,
+				451333FA1FFF1982000EF74D /* WordModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4525FDDF1FF68D1A006D06B8 /* Model */ = {
@@ -202,6 +231,8 @@
 		45F9597A1FFE0A16004A1305 /* CCBigBangExt */ = {
 			isa = PBXGroup;
 			children = (
+				451333F81FFF1969000EF74D /* Model */,
+				451333F11FFF1943000EF74D /* HttpUtil */,
 				45F9598E1FFE1C9E004A1305 /* View */,
 				45F9597B1FFE0A16004A1305 /* TodayViewController.swift */,
 				45F9598A1FFE1C48004A1305 /* CCBigBangExt-Bridging-Header.h */,
@@ -471,6 +502,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */,
+				451333F71FFF1961000EF74D /* HttpRequest.m in Sources */,
+				451333F61FFF1961000EF74D /* HttpUtil.m in Sources */,
+				451333FB1FFF1982000EF74D /* WordModel.m in Sources */,
 				45F959901FFE1CC0004A1305 /* ExtWordCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
