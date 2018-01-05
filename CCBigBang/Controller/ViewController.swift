@@ -122,9 +122,13 @@ class ViewController: UIViewController {
             make.width.equalTo(s_width * 0.9)
         }
         
+        LocalSegmentor.initSegmentor()
     }
     
     @objc private func btnClicked() -> () {
+        dataSource = LocalSegmentor.cutIntoModel(withInput: inputTV.text)
+        collView.reloadData()
+        
         var params = Dictionary<String, String>.init()
         params.updateValue(api_key, forKey: "api_key")
         params.updateValue(inputTV.text, forKey: "text")

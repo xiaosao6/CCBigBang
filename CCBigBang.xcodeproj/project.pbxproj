@@ -11,6 +11,9 @@
 		451333F61FFF1961000EF74D /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F31FFF1960000EF74D /* HttpUtil.m */; };
 		451333F71FFF1961000EF74D /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F51FFF1961000EF74D /* HttpRequest.m */; };
 		451333FB1FFF1982000EF74D /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333FA1FFF1982000EF74D /* WordModel.m */; };
+		4513349F1FFF6A5E000EF74D /* iosjieba.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4513347C1FFF6A5E000EF74D /* iosjieba.bundle */; };
+		451334A01FFF6A5E000EF74D /* Segmentor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4513347D1FFF6A5E000EF74D /* Segmentor.cpp */; };
+		451334A31FFF6C40000EF74D /* LocalSegmentor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 451334A21FFF6C40000EF74D /* LocalSegmentor.mm */; };
 		4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE31FF7CFB3006D06B8 /* WordModel.m */; };
 		4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE61FF7DBD7006D06B8 /* WordCell.swift */; };
 		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
@@ -61,6 +64,41 @@
 		451333F51FFF1961000EF74D /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
 		451333F91FFF1982000EF74D /* WordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordModel.h; sourceTree = "<group>"; };
 		451333FA1FFF1982000EF74D /* WordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
+		4513347C1FFF6A5E000EF74D /* iosjieba.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iosjieba.bundle; sourceTree = "<group>"; };
+		4513347D1FFF6A5E000EF74D /* Segmentor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segmentor.cpp; sourceTree = "<group>"; };
+		4513347E1FFF6A5E000EF74D /* Segmentor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmentor.h; sourceTree = "<group>"; };
+		451334801FFF6A5E000EF74D /* DictTrie.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DictTrie.hpp; sourceTree = "<group>"; };
+		451334811FFF6A5E000EF74D /* ISegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ISegment.hpp; sourceTree = "<group>"; };
+		451334821FFF6A5E000EF74D /* FullSegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FullSegment.hpp; sourceTree = "<group>"; };
+		451334831FFF6A5E000EF74D /* MixSegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MixSegment.hpp; sourceTree = "<group>"; };
+		451334841FFF6A5E000EF74D /* MPSegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MPSegment.hpp; sourceTree = "<group>"; };
+		451334851FFF6A5E000EF74D /* KeywordExtractor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeywordExtractor.hpp; sourceTree = "<group>"; };
+		451334861FFF6A5E000EF74D /* PosTagger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PosTagger.hpp; sourceTree = "<group>"; };
+		451334871FFF6A5E000EF74D /* TransCode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransCode.hpp; sourceTree = "<group>"; };
+		451334881FFF6A5E000EF74D /* Trie.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Trie.hpp; sourceTree = "<group>"; };
+		4513348A1FFF6A5E000EF74D /* ThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ThreadPool.hpp; sourceTree = "<group>"; };
+		4513348B1FFF6A5E000EF74D /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
+		4513348C1FFF6A5E000EF74D /* StdExtension.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StdExtension.hpp; sourceTree = "<group>"; };
+		4513348D1FFF6A5E000EF74D /* HandyMacro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HandyMacro.hpp; sourceTree = "<group>"; };
+		4513348E1FFF6A5E000EF74D /* StringUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtil.hpp; sourceTree = "<group>"; };
+		4513348F1FFF6A5E000EF74D /* LocalVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LocalVector.hpp; sourceTree = "<group>"; };
+		451334901FFF6A5E000EF74D /* BlockingQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BlockingQueue.hpp; sourceTree = "<group>"; };
+		451334911FFF6A5E000EF74D /* InitOnOff.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InitOnOff.hpp; sourceTree = "<group>"; };
+		451334921FFF6A5E000EF74D /* Config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Config.hpp; sourceTree = "<group>"; };
+		451334931FFF6A5E000EF74D /* MysqlClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MysqlClient.hpp; sourceTree = "<group>"; };
+		451334941FFF6A5E000EF74D /* CastFloat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CastFloat.hpp; sourceTree = "<group>"; };
+		451334951FFF6A5E000EF74D /* BoundedQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundedQueue.hpp; sourceTree = "<group>"; };
+		451334961FFF6A5E000EF74D /* ArgvContext.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArgvContext.hpp; sourceTree = "<group>"; };
+		451334971FFF6A5E000EF74D /* Condition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Condition.hpp; sourceTree = "<group>"; };
+		451334981FFF6A5E000EF74D /* Md5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Md5.hpp; sourceTree = "<group>"; };
+		451334991FFF6A5E000EF74D /* Thread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Thread.hpp; sourceTree = "<group>"; };
+		4513349A1FFF6A5E000EF74D /* MutexLock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MutexLock.hpp; sourceTree = "<group>"; };
+		4513349B1FFF6A5E000EF74D /* NonCopyable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NonCopyable.hpp; sourceTree = "<group>"; };
+		4513349C1FFF6A5E000EF74D /* QuerySegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuerySegment.hpp; sourceTree = "<group>"; };
+		4513349D1FFF6A5E000EF74D /* SegmentBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SegmentBase.hpp; sourceTree = "<group>"; };
+		4513349E1FFF6A5E000EF74D /* HMMSegment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HMMSegment.hpp; sourceTree = "<group>"; };
+		451334A11FFF6C40000EF74D /* LocalSegmentor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalSegmentor.h; sourceTree = "<group>"; };
+		451334A21FFF6C40000EF74D /* LocalSegmentor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalSegmentor.mm; sourceTree = "<group>"; };
 		4525FDE21FF7CFB3006D06B8 /* WordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordModel.h; sourceTree = "<group>"; };
 		4525FDE31FF7CFB3006D06B8 /* WordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
 		4525FDE61FF7DBD7006D06B8 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
@@ -145,6 +183,51 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4513347F1FFF6A5E000EF74D /* CppJieba */ = {
+			isa = PBXGroup;
+			children = (
+				451334801FFF6A5E000EF74D /* DictTrie.hpp */,
+				451334811FFF6A5E000EF74D /* ISegment.hpp */,
+				451334821FFF6A5E000EF74D /* FullSegment.hpp */,
+				451334831FFF6A5E000EF74D /* MixSegment.hpp */,
+				451334841FFF6A5E000EF74D /* MPSegment.hpp */,
+				451334851FFF6A5E000EF74D /* KeywordExtractor.hpp */,
+				451334861FFF6A5E000EF74D /* PosTagger.hpp */,
+				451334871FFF6A5E000EF74D /* TransCode.hpp */,
+				451334881FFF6A5E000EF74D /* Trie.hpp */,
+				451334891FFF6A5E000EF74D /* Limonp */,
+				4513349C1FFF6A5E000EF74D /* QuerySegment.hpp */,
+				4513349D1FFF6A5E000EF74D /* SegmentBase.hpp */,
+				4513349E1FFF6A5E000EF74D /* HMMSegment.hpp */,
+			);
+			path = CppJieba;
+			sourceTree = "<group>";
+		};
+		451334891FFF6A5E000EF74D /* Limonp */ = {
+			isa = PBXGroup;
+			children = (
+				4513348A1FFF6A5E000EF74D /* ThreadPool.hpp */,
+				4513348B1FFF6A5E000EF74D /* Logger.hpp */,
+				4513348C1FFF6A5E000EF74D /* StdExtension.hpp */,
+				4513348D1FFF6A5E000EF74D /* HandyMacro.hpp */,
+				4513348E1FFF6A5E000EF74D /* StringUtil.hpp */,
+				4513348F1FFF6A5E000EF74D /* LocalVector.hpp */,
+				451334901FFF6A5E000EF74D /* BlockingQueue.hpp */,
+				451334911FFF6A5E000EF74D /* InitOnOff.hpp */,
+				451334921FFF6A5E000EF74D /* Config.hpp */,
+				451334931FFF6A5E000EF74D /* MysqlClient.hpp */,
+				451334941FFF6A5E000EF74D /* CastFloat.hpp */,
+				451334951FFF6A5E000EF74D /* BoundedQueue.hpp */,
+				451334961FFF6A5E000EF74D /* ArgvContext.hpp */,
+				451334971FFF6A5E000EF74D /* Condition.hpp */,
+				451334981FFF6A5E000EF74D /* Md5.hpp */,
+				451334991FFF6A5E000EF74D /* Thread.hpp */,
+				4513349A1FFF6A5E000EF74D /* MutexLock.hpp */,
+				4513349B1FFF6A5E000EF74D /* NonCopyable.hpp */,
+			);
+			path = Limonp;
+			sourceTree = "<group>";
+		};
 		4525FDDF1FF68D1A006D06B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +258,8 @@
 		452FAF6A1FFB6C7200C40C88 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				451334A11FFF6C40000EF74D /* LocalSegmentor.h */,
+				451334A21FFF6C40000EF74D /* LocalSegmentor.mm */,
 				45F062AA1FF6208500C96EC5 /* Assets.xcassets */,
 				45F062AC1FF6208500C96EC5 /* LaunchScreen.storyboard */,
 			);
@@ -204,6 +289,10 @@
 		45F062A21FF6208500C96EC5 /* CCBigBang */ = {
 			isa = PBXGroup;
 			children = (
+				4513347E1FFF6A5E000EF74D /* Segmentor.h */,
+				4513347D1FFF6A5E000EF74D /* Segmentor.cpp */,
+				4513347F1FFF6A5E000EF74D /* CppJieba */,
+				4513347C1FFF6A5E000EF74D /* iosjieba.bundle */,
 				45F959891FFE0CAE004A1305 /* CCBigBang.entitlements */,
 				452FAF6A1FFB6C7200C40C88 /* Other */,
 				452FAF691FFB6C5200C40C88 /* Controller */,
@@ -363,6 +452,7 @@
 			files = (
 				45F062AE1FF6208500C96EC5 /* LaunchScreen.storyboard in Resources */,
 				45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */,
+				4513349F1FFF6A5E000EF74D /* iosjieba.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,8 +578,10 @@
 			files = (
 				455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */,
 				45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */,
+				451334A31FFF6C40000EF74D /* LocalSegmentor.mm in Sources */,
 				45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */,
 				45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */,
+				451334A01FFF6A5E000EF74D /* Segmentor.cpp in Sources */,
 				4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */,
 				452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */,
 				4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */,
@@ -545,7 +637,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -602,7 +694,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
