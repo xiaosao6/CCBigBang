@@ -161,7 +161,7 @@ class ViewController: UIViewController {
         }.last
 
         if let cell = touchingCell {
-            let touchOver = collView.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
+            let touchOver = collView.indexPath(for: cell)!
             if beganPath == nil { beganPath = touchOver } // 一次手势的起始位置
             
             if touchOver != prevTouchPath {
@@ -172,10 +172,10 @@ class ViewController: UIViewController {
                 tmpPanPaths = Set.init(began2CurrentPaths)
                 
                 let prev2CurrentPaths = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                    return (indexPath.item >= prevTouchPath?.item ?? 0 && indexPath.item <= touchOver.item) ||
-                        (indexPath.item <= prevTouchPath?.item ?? 0 && indexPath.item >= touchOver.item)
+                    return (indexPath.item >= (prevTouchPath ?? touchOver).item && indexPath.item <= touchOver.item) ||
+                        (indexPath.item <= (prevTouchPath ?? touchOver).item && indexPath.item >= touchOver.item)
                 }
-                UIView.performWithoutAnimation { collView.reloadItems(at: prev2CurrentPaths) }
+                collView.reloadItems(at: prev2CurrentPaths)
             }
             prevTouchPath = touchOver
         }
