@@ -144,6 +144,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func historyBtnClicked() -> () {
+        viewDeckController?.rightViewController?.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
         viewDeckController?.open(.right, animated: true)
     }
     
