@@ -38,24 +38,6 @@ class ViewController: UIViewController {
 
     fileprivate var dataSource = [WordModel]()
     
-    fileprivate var selectedPaths = Set<IndexPath>()
-    fileprivate var tmpPanPaths = Set<IndexPath>()
-    
-    fileprivate var isPanning = false
-    fileprivate var isPanDeleting: Bool{
-        get{
-            if let began = beganPath {
-                return selectedPaths.contains(began)
-            } else {
-                return false
-            }
-        }
-    }
-    /// 每次手势的起始位置
-    fileprivate var beganPath: IndexPath?
-    /// 当前位置的前一个触摸位置
-    fileprivate var prevTouchPath: IndexPath?
-    
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
         textView.layer.borderWidth = 1
@@ -75,19 +57,6 @@ class ViewController: UIViewController {
         return btn
     }()
     
-    fileprivate lazy var collView : UICollectionView = {
-        let flowLayout = UICollectionViewLeftAlignedLayout.init()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumInteritemSpacing = 5; flowLayout.minimumLineSpacing = 5
-        let tmpcollView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        tmpcollView.showsVerticalScrollIndicator = false
-        tmpcollView.allowsMultipleSelection = true
-        tmpcollView.backgroundColor = UIColor.white
-        tmpcollView.delegate = self; tmpcollView.dataSource = self
-        tmpcollView.register(WordCell.self, forCellWithReuseIdentifier: NSStringFromClass(WordCell.self))
-        return tmpcollView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -100,18 +69,6 @@ class ViewController: UIViewController {
             make.top.right.equalToSuperview().inset(20)
         }
         
-        let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(gestureRecognizer:)))
-        self.view.addGestureRecognizer(gestureRecognizer)
-        gestureRecognizer.minimumNumberOfTouches = 1
-        gestureRecognizer.maximumNumberOfTouches = 1
-        
-        self.view.addSubview(collView)
-        collView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(50)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: s_width * 0.9, height: s_height * 0.5))
-        }
-        
         self.view.addSubview(reqBtn)
         reqBtn.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-10)
@@ -120,137 +77,45 @@ class ViewController: UIViewController {
         
         self.view.addSubview(inputTV)
         inputTV.snp.makeConstraints { (make) in
-            make.top.equalTo(collView.snp.bottom).offset(10)
+            make.height.equalTo(s_height * 0.5)
             make.bottom.equalTo(reqBtn.snp.top).offset(-10)
             make.centerX.equalToSuperview()
             make.width.equalTo(s_width * 0.9)
         }
         
         LocalSegmentor.initSegmentor()
-        inputTV.text = UIPasteboard.general.string ?? def_input
+        inputTV.text = def_input
     }
     
     @objc private func splitClicked() -> () {
         dataSource = LocalSegmentor.cutIntoModel(withInput: inputTV.text)
-        collView.reloadData()
+        let sview = SplitResultView.init(frame: self.view.frame)
+        self.view.addSubview(sview)
+        sview.reloadWithDatas(dataSource)
         
-        var params = Dictionary<String, String>.init()
-        params.updateValue(api_key, forKey: "api_key")
-        params.updateValue(inputTV.text, forKey: "text")
-        params.updateValue("ws", forKey: "pattern")
-        params.updateValue("json", forKey: "format")
-        
-        let request = HttpRequest(url: base_url, params: params)
-        NSLog("\(request.reqPrint())")
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        HttpUtil.util().sendReq(request) { [weak self] (list, err) in
-            MBProgressHUD.hide(for: self?.view, animated: true)
-            guard let models = list else { return }
-            self?.dataSource = models
-            self?.collView.reloadData()
-        }
+//        var params = Dictionary<String, String>.init()
+//        params.updateValue(api_key, forKey: "api_key")
+//        params.updateValue(inputTV.text, forKey: "text")
+//        params.updateValue("ws", forKey: "pattern")
+//        params.updateValue("json", forKey: "format")
+//
+//        let request = HttpRequest(url: base_url, params: params)
+//        NSLog("\(request.reqPrint())")
+//
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        HttpUtil.util().sendReq(request) { [weak self] (list, err) in
+//            MBProgressHUD.hide(for: self?.view, animated: true)
+//            guard let models = list else { return }
+//            self?.dataSource = models
+//            self?.collView.reloadData()
+//        }
     }
     
     @objc private func historyBtnClicked() -> () {
         viewDeckController?.rightViewController?.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
         viewDeckController?.open(.right, animated: true)
     }
-    
-    @objc private func handleGesture(gestureRecognizer: UIPanGestureRecognizer) -> () {
-        let point = gestureRecognizer.location(in: collView)
-        isPanning = true
 
-        let touchingCell = collView.visibleCells.filter { (cell_) -> Bool in
-            return isCell(cell: cell_, containsPoint: point)
-        }.last
-
-        if let cell = touchingCell {
-            let touchOver = collView.indexPath(for: cell)!
-            if beganPath == nil { beganPath = touchOver } // 一次手势的起始位置
-            
-            if touchOver != prevTouchPath {
-                let began2CurrentPaths = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                    return (indexPath.item >= beganPath!.item && indexPath.item <= touchOver.item) ||
-                        (indexPath.item <= beganPath!.item && indexPath.item >= touchOver.item)
-                }
-                tmpPanPaths = Set.init(began2CurrentPaths)
-                
-                let prev2CurrentPaths = collView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
-                    return (indexPath.item >= (prevTouchPath ?? touchOver).item && indexPath.item <= touchOver.item) ||
-                        (indexPath.item <= (prevTouchPath ?? touchOver).item && indexPath.item >= touchOver.item)
-                }
-                collView.reloadItems(at: prev2CurrentPaths)
-            }
-            prevTouchPath = touchOver
-        }
-        
-        if gestureRecognizer.state == .ended {
-            prevTouchPath = nil
-            isPanning = false
-            if isPanDeleting {
-                selectedPaths = selectedPaths.subtracting(tmpPanPaths)
-            } else {
-                selectedPaths = selectedPaths.union(tmpPanPaths)
-            }
-            tmpPanPaths.removeAll()
-            beganPath = nil
-            collView.isScrollEnabled = true
-        }
-    }
-    
-    @objc private func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
-        cell?.contentView.backgroundColor = selected ? UIColor.blue : UIColor.init(white: 0.5, alpha: 0.3)
-    }
-    
-    @objc fileprivate func toggleSelectState(_ indexPath: IndexPath) -> () {
-        let cell = collView.cellForItem(at: indexPath)
-        if selectedPaths.contains(indexPath) {
-            setCellSelection(cell: cell, selected: false)
-            selectedPaths.remove(indexPath)
-        } else {
-            setCellSelection(cell: cell, selected: true)
-            selectedPaths.insert(indexPath)
-        }
-    }
-
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return dataSource.count }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize(ofLabelSize: dataSource[indexPath.item].rectSize)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
-        cell.configUI(text: dataSource[indexPath.item].cont)
-        
-        if isPanning {
-            if isPanDeleting {
-                let selected = selectedPaths.subtracting(tmpPanPaths).contains(indexPath)
-                setCellSelection(cell: cell, selected: selected)
-            } else {
-                let selected = selectedPaths.union(tmpPanPaths).contains(indexPath)
-                setCellSelection(cell: cell, selected: selected)
-            }
-        } else {
-            let selected = selectedPaths.contains(indexPath)
-            setCellSelection(cell: cell, selected: selected)
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        toggleSelectState(indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        toggleSelectState(indexPath)
-    }
-    
 }
 
 extension ViewController: UITextViewDelegate {

@@ -19,6 +19,7 @@
 		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
 		455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */; };
 		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
+		45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BE2003459600D4B096 /* SplitResultView.swift */; };
 		45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A31FF6208500C96EC5 /* AppDelegate.swift */; };
 		45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A51FF6208500C96EC5 /* ViewController.swift */; };
 		45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F062AA1FF6208500C96EC5 /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 		455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryCell.swift; sourceTree = "<group>"; };
 		45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWPlaceHolder.h"; sourceTree = "<group>"; };
 		45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWPlaceHolder.m"; sourceTree = "<group>"; };
+		45DBE8BE2003459600D4B096 /* SplitResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitResultView.swift; sourceTree = "<group>"; };
 		45F062A01FF6208500C96EC5 /* CCBigBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCBigBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F062A31FF6208500C96EC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45F062A51FF6208500C96EC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				4525FDE61FF7DBD7006D06B8 /* WordCell.swift */,
 				455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */,
+				45DBE8BE2003459600D4B096 /* SplitResultView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 			files = (
 				455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */,
 				45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */,
+				45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */,
 				45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */,
 				451334A31FFF6C40000EF74D /* LocalSegmentor.mm in Sources */,
 				45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */,
