@@ -18,6 +18,7 @@
 		4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE61FF7DBD7006D06B8 /* WordCell.swift */; };
 		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
 		455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */; };
+		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
 		45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A31FF6208500C96EC5 /* AppDelegate.swift */; };
 		45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F062A51FF6208500C96EC5 /* ViewController.swift */; };
 		45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F062AA1FF6208500C96EC5 /* Assets.xcassets */; };
@@ -104,6 +105,8 @@
 		4525FDE61FF7DBD7006D06B8 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryViewController.swift; sourceTree = "<group>"; };
 		455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryCell.swift; sourceTree = "<group>"; };
+		45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWPlaceHolder.h"; sourceTree = "<group>"; };
+		45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWPlaceHolder.m"; sourceTree = "<group>"; };
 		45F062A01FF6208500C96EC5 /* CCBigBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCBigBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F062A31FF6208500C96EC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45F062A51FF6208500C96EC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +269,15 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		45DBE8BA20033F9C00D4B096 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */,
+				45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		45F062971FF6208500C96EC5 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +301,7 @@
 		45F062A21FF6208500C96EC5 /* CCBigBang */ = {
 			isa = PBXGroup;
 			children = (
+				45DBE8BA20033F9C00D4B096 /* Category */,
 				4513347E1FFF6A5E000EF74D /* Segmentor.h */,
 				4513347D1FFF6A5E000EF74D /* Segmentor.cpp */,
 				4513347F1FFF6A5E000EF74D /* CppJieba */,
@@ -577,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */,
+				45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */,
 				45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */,
 				451334A31FFF6C40000EF74D /* LocalSegmentor.mm in Sources */,
 				45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */,
