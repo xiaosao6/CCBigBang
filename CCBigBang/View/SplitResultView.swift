@@ -9,6 +9,20 @@
 import UIKit
 import UICollectionViewLeftAlignedLayout
 
+func cellSize(ofLabelSize:CGSize) -> CGSize {
+    return CGSize(width: ofLabelSize.width + 18, height: ofLabelSize.height + 18*0.5)
+}
+
+func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
+    let cellSX = cell.frame.origin.x
+    let cellEX = cell.frame.origin.x + cell.frame.size.width
+    let cellSY = cell.frame.origin.y
+    let cellEY = cell.frame.origin.y + cell.frame.size.height
+    let pointerX = containsPoint.x
+    let pointerY = containsPoint.y
+    return pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY
+}
+
 
 /// 分词结果View
 class SplitResultView: UIView {
@@ -37,21 +51,40 @@ class SplitResultView: UIView {
         let tmpcollView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         tmpcollView.showsVerticalScrollIndicator = false
         tmpcollView.allowsMultipleSelection = true
-        tmpcollView.backgroundColor = UIColor.white
+        tmpcollView.backgroundColor = UIColor.clear
         tmpcollView.delegate = self; tmpcollView.dataSource = self
         tmpcollView.register(WordCell.self, forCellWithReuseIdentifier: NSStringFromClass(WordCell.self))
         return tmpcollView
     }()
     
+    lazy var clearBtn: UIButton = {
+        let btn = UIButton.init(type: .system)
+        btn.backgroundColor = UIColor.white
+        btn.layer.cornerRadius = 6
+        btn.setTitle(" 取消 ", for: .normal)
+        btn.addTarget(self, action: #selector(clearClicked(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGray
+        
+        //模糊背景
+        let effectView = UIVisualEffectView.init(effect: UIBlurEffect.init(style: .extraLight))
+        effectView.frame = frame
+        self.addSubview(effectView)
         
         self.addSubview(collView)
         collView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalTo(frame.width * 0.9)
-            make.height.equalTo(frame.height * 0.5)
+            make.height.equalTo(frame.height * 0.6)
+        }
+        
+        self.addSubview(clearBtn)
+        clearBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(collView.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
         }
         
         let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(_:)))
@@ -62,11 +95,29 @@ class SplitResultView: UIView {
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    func reloadWithDatas(_ datas:[WordModel]) -> () {
-        dataSource = datas
+    func refreshWithDatas(_ datas:[WordModel]?) -> () {
+        if let datas_ = datas {
+            dataSource = datas_
+            refreshCollViewHeight()
+        }
+    }
+    
+    fileprivate func refreshCollViewHeight() -> () {
         collView.reloadData()
     }
     
+}
+
+extension SplitResultView {
+    
+    @objc fileprivate func clearClicked(_ btn: UIButton) -> () {
+        if selectedPaths.count > 0 {
+            selectedPaths.removeAll()
+            refreshCollViewHeight()
+        }else{
+            self.removeFromSuperview()
+        }
+    }
 }
 
 // MARK: - 处理手势、选择/取消选择的切换
