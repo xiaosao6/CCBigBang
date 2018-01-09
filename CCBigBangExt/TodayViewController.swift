@@ -16,9 +16,6 @@ let s_height = UIScreen.main.bounds.height
 let api_key  = "p1C6E1V2Q5urkIxkss9n6NtBKVXXmG9KfTSlnFVk"
 let base_url = "https://api.ltp-cloud.com/analysis/"
 
-func cellSize(ofLabelSize:CGSize) -> CGSize {
-    return CGSize(width: ofLabelSize.width + 18, height: ofLabelSize.height + 18*0.5)
-}
 
 func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
     let cellSX = cell.frame.origin.x
@@ -125,7 +122,7 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return dataSource.count }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize(ofLabelSize: dataSource[indexPath.item].rectSize)
+        return dataSource[indexPath.item].rectSize
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -8,11 +8,13 @@
 
 #import "WordModel.h"
 #import <MJExtension/NSObject+MJKeyValue.h>
+#import "UIImage+CC_Category.h"
 
 
 @interface WordModel ()
 
 @property (nonatomic, readwrite) CGSize rectSize;
+@property (nonatomic, readwrite) UIImage *cornerBgImg;
 
 @end
 
@@ -31,7 +33,11 @@
                    | NSStringDrawingUsesLineFragmentOrigin
                    | NSStringDrawingUsesFontLeading
                                        attributes:attribute context:nil].size;
-    self.rectSize = size;
+    self.rectSize = CGSizeMake(size.width + 18, size.height + 18 * 0.5);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.cornerBgImg = [[UIImage imageWithColor:[UIColor lightGrayColor] Size:self.rectSize] roundCorner:8];
+    });
 }
 
 @end

@@ -31,7 +31,7 @@
                    | NSStringDrawingUsesLineFragmentOrigin
                    | NSStringDrawingUsesFontLeading
                                        attributes:attribute context:nil].size;
-    self.rectSize = size;
+    self.rectSize = CGSizeMake(size.width + 18, size.height + 18 * 0.5);
 }
 
 @end

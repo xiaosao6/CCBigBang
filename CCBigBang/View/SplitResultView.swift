@@ -9,9 +9,6 @@
 import UIKit
 import UICollectionViewLeftAlignedLayout
 
-func cellSize(ofLabelSize:CGSize) -> CGSize {
-    return CGSize(width: ofLabelSize.width + 18, height: ofLabelSize.height + 18*0.5)
-}
 
 func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
     let cellSX = cell.frame.origin.x
@@ -186,12 +183,12 @@ extension SplitResultView: UICollectionViewDelegateFlowLayout, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return dataSource.count }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize(ofLabelSize: dataSource[indexPath.item].rectSize)
+        return dataSource[indexPath.item].rectSize
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
-        cell.configUI(text: dataSource[indexPath.item].cont)
+        cell.configUI(model: dataSource[indexPath.item])
         
         if isPanning {
             if isPanDeleting {

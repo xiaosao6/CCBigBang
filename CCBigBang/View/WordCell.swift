@@ -17,9 +17,14 @@ class WordCell: UICollectionViewCell {
         let label = UILabel.init()
         label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .center
-        label.layer.backgroundColor = UIColor.lightGray.cgColor
+//        label.layer.backgroundColor = UIColor.lightGray.cgColor
         label.layer.masksToBounds = true
         return label
+    }()
+    
+    lazy var bgimgv: UIImageView = {
+        let imgv = UIImageView.init()
+        return imgv
     }()
     
     override init(frame: CGRect) {
@@ -30,11 +35,18 @@ class WordCell: UICollectionViewCell {
             make.edges.equalToSuperview().inset(5)
         }
         
+        self.contentView.insertSubview(bgimgv, belowSubview: titleLabel)
+        bgimgv.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    func configUI(text: String?) -> () {
-        titleLabel.text = text
+    func configUI(model: WordModel) -> () {
+        titleLabel.text = model.cont
+        
+        bgimgv.image = model.cornerBgImg
     }
+    
 }

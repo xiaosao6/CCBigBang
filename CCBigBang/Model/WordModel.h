@@ -25,5 +25,9 @@
  文字显示尺寸
  */
 @property (nonatomic, readonly) CGSize rectSize;
+/**
+ 圆角背景图片
+ */
+@property (nonatomic, readonly) UIImage *cornerBgImg;
 
 @end
