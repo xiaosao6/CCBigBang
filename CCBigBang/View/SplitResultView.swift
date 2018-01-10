@@ -21,6 +21,8 @@ func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
 }
 
 
+let splitViewTag = 111
+
 /// 分词结果View
 class SplitResultView: UIView {
     
@@ -65,6 +67,7 @@ class SplitResultView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.tag = splitViewTag
         
         //模糊背景
         let effectView = UIVisualEffectView.init(effect: UIBlurEffect.init(style: .extraLight))

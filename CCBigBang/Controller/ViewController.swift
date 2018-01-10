@@ -43,11 +43,6 @@ class ViewController: UIViewController {
         return btn
     }()
     
-    lazy var splitView: SplitResultView = {
-        let tmpv = SplitResultView.init(frame: CGRect.init(origin: .zero, size: CGSize(width: s_width, height: s_height)))
-        return tmpv
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -79,6 +74,7 @@ class ViewController: UIViewController {
     
     @objc private func splitClicked() -> () {
         dataSource = LocalSegmentor.cutIntoModel(withInput: inputTV.text)
+        let splitView = SplitResultView.init(frame: CGRect(x: 0, y: 0, width: s_width, height: s_height))
         splitView.refreshWithDatas(dataSource)
         self.view.addSubview(splitView)
         
