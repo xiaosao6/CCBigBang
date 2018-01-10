@@ -143,7 +143,7 @@ extension SplitResultView {
                     return (indexPath.item >= (prevTouchPath ?? touchOver).item && indexPath.item <= touchOver.item) ||
                         (indexPath.item <= (prevTouchPath ?? touchOver).item && indexPath.item >= touchOver.item)
                 }
-                collView.reloadItems(at: prev2CurrentPaths)
+                UIView.performWithoutAnimation { collView.reloadItems(at: prev2CurrentPaths) }
             }
             prevTouchPath = touchOver
         }
