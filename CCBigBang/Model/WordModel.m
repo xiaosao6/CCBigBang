@@ -15,6 +15,7 @@
 
 @property (nonatomic, readwrite) CGSize rectSize;
 @property (nonatomic, readwrite) UIImage *cornerBgImg;
+@property (nonatomic, readwrite) UIImage *cornerBgImg_Selected;
 
 @end
 
@@ -37,6 +38,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.cornerBgImg = [[UIImage imageWithColor:[UIColor lightGrayColor] Size:self.rectSize] roundCorner:8];
+        self.cornerBgImg_Selected = [[UIImage imageWithColor:[UIColor cyanColor] Size:self.rectSize] roundCorner:8];
     });
 }
 

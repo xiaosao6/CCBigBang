@@ -12,25 +12,6 @@
 @implementation UIImage (CC_Category)
 
 
--(CGSize)cc_corneredSize{
-    return [(NSValue *)objc_getAssociatedObject(self, @selector(cc_corneredSize)) CGSizeValue];
-}
-
--(void)setCc_corneredSize:(CGSize)cc_corneredSize{
-    objc_setAssociatedObject(self, @selector(cc_corneredSize), [NSValue valueWithCGSize:cc_corneredSize], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
--(UIColor *)cc_corneredBgColor{
-    return objc_getAssociatedObject(self, @selector(cc_corneredBgColor));
-}
-
--(void)setCc_corneredBgColor:(UIColor *)cc_corneredBgColor{
-    objc_setAssociatedObject(self, @selector(cc_corneredBgColor), cc_corneredBgColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-
-
-
 +(UIImage *)imageWithColor:(UIColor *)color Size:(CGSize)size{
     UIGraphicsBeginImageContext(size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -38,9 +19,6 @@
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
     UIImage *retimg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    retimg.cc_corneredBgColor = color;
-    retimg.cc_corneredSize = size;
     return retimg;
 }
 

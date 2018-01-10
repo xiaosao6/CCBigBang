@@ -14,19 +14,6 @@
 @interface UIImage (CC_Category)
 
 /**
- 实现圆角后的尺寸大小
- */
-@property (nonatomic, assign) CGSize cc_corneredSize;
-
-/**
- 实现圆角后的背景颜色
- */
-@property (nonatomic, strong) UIColor *cc_corneredBgColor;
-
-
-
-
-/**
  *  用UIColor画一张image
  */
 +(UIImage *)imageWithColor:(UIColor *)color Size:(CGSize)size;

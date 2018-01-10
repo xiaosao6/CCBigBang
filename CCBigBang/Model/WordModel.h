@@ -26,8 +26,12 @@
  */
 @property (nonatomic, readonly) CGSize rectSize;
 /**
- 圆角背景图片
+ 未选中的圆角背景图片
  */
 @property (nonatomic, readonly) UIImage *cornerBgImg;
+/**
+ 已选中的圆角背景图片
+ */
+@property (nonatomic, readonly) UIImage *cornerBgImg_Selected;
 
 @end

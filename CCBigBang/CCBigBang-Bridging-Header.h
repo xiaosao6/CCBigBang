@@ -8,3 +8,4 @@
 
 #import "LocalSegmentor.h"
 #import "UITextView+ZWPlaceHolder.h"
+#import "UIImage+CC_Category.h"

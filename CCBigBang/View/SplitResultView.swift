@@ -162,17 +162,18 @@ extension SplitResultView {
         }
     }
     
-    @objc fileprivate func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
-        cell?.contentView.backgroundColor = selected ? UIColor.blue : UIColor.init(white: 0.5, alpha: 0.3)
+    @objc fileprivate func setCellSelection(cell:UICollectionViewCell, path:IndexPath, selected: Bool) -> () {
+        let model = dataSource[path.item]
+        (cell as? WordCell)?.bgimgv.image = selected ? model.cornerBgImg_Selected : model.cornerBgImg
     }
     
     @objc fileprivate func toggleSelectState(_ indexPath: IndexPath) -> () {
-        let cell = collView.cellForItem(at: indexPath)
+        guard let cell = collView.cellForItem(at: indexPath) else { return }
         if selectedPaths.contains(indexPath) {
-            setCellSelection(cell: cell, selected: false)
+            setCellSelection(cell: cell, path:indexPath, selected: false)
             selectedPaths.remove(indexPath)
         } else {
-            setCellSelection(cell: cell, selected: true)
+            setCellSelection(cell: cell, path:indexPath, selected: true)
             selectedPaths.insert(indexPath)
         }
     }
@@ -193,14 +194,14 @@ extension SplitResultView: UICollectionViewDelegateFlowLayout, UICollectionViewD
         if isPanning {
             if isPanDeleting {
                 let selected = selectedPaths.subtracting(tmpPanPaths).contains(indexPath)
-                setCellSelection(cell: cell, selected: selected)
+                setCellSelection(cell: cell, path:indexPath, selected: selected)
             } else {
                 let selected = selectedPaths.union(tmpPanPaths).contains(indexPath)
-                setCellSelection(cell: cell, selected: selected)
+                setCellSelection(cell: cell, path:indexPath, selected: selected)
             }
         } else {
             let selected = selectedPaths.contains(indexPath)
-            setCellSelection(cell: cell, selected: selected)
+            setCellSelection(cell: cell, path:indexPath, selected: selected)
         }
         return cell
     }
