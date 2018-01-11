@@ -60,7 +60,7 @@ class SplitResultView: UIView {
         let btn = UIButton.init(type: .system)
         btn.backgroundColor = UIColor.white
         btn.layer.cornerRadius = 6
-        btn.setTitle(" 取消 ", for: .normal)
+        btn.setTitle("  取消  ", for: .normal)
         btn.addTarget(self, action: #selector(clearClicked(_:)), for: .touchUpInside)
         return btn
     }()

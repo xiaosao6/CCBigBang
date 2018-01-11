@@ -52,20 +52,20 @@ class ViewController: UIViewController {
         historyBtn.addTarget(self, action: #selector(historyBtnClicked), for: .touchUpInside)
         self.view.addSubview(historyBtn)
         historyBtn.snp.makeConstraints { (make) in
-            make.top.right.equalToSuperview().inset(20)
-        }
-        
-        self.view.addSubview(reqBtn)
-        reqBtn.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-10)
-            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(50)
+            make.right.equalToSuperview().inset(20)
         }
         
         self.view.addSubview(inputTV)
         inputTV.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
-            make.width.equalTo(s_width * 0.9)
-            make.height.equalTo(s_height * 0.5)
+            make.size.equalTo(CGSize.init(width: s_width * 0.9, height: s_height * 0.5))
+        }
+        
+        self.view.addSubview(reqBtn)
+        reqBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(inputTV.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
         }
         
         LocalSegmentor.initSegmentor()
