@@ -65,9 +65,9 @@ class SplitResultView: UIView {
         return btn
     }()
     
-    convenience init(models:[WordModel]) {
+    convenience init(models:[WordModel]?) {
         self.init(frame: CGRect.init(x: 0, y: 0, width: s_width, height: s_height))
-        dataSource = models
+        dataSource = models ?? [WordModel]()
     }
     
     private override init(frame: CGRect) {
@@ -113,6 +113,8 @@ class SplitResultView: UIView {
             }
         }
     }
+    
+    deinit { NSLog("\(self.classForCoder.description())销毁了") }
     
 }
 

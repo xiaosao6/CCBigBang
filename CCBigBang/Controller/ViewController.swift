@@ -21,8 +21,6 @@ let def_input = "在语言云默认的设定中，依靠换行符对文本进行
 // 注意：全局定义WordCell的字体大小
 
 class ViewController: UIViewController {
-
-    fileprivate var dataSource = [WordModel]()
     
     lazy var inputTV: UITextView = {
         let textView = UITextView.init()
@@ -73,8 +71,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func splitClicked() -> () {
-        dataSource = LocalSegmentor.cutIntoModel(withInput: inputTV.text)
-        let splitView = SplitResultView.init(models: dataSource)
+        let splitView = SplitResultView.init(models: LocalSegmentor.cutIntoModel(withInput: inputTV.text))
         splitView.show()
         
 //        var params = Dictionary<String, String>.init()
