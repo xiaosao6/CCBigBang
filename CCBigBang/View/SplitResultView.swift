@@ -20,6 +20,12 @@ func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
     return pointerX >= cellSX && pointerX <= cellEX && pointerY >= cellSY && pointerY <= cellEY
 }
 
+func distance(_ viewA:UIView, viewB:UIView) -> Double {
+    let distanceX = fabs(viewA.center.x - viewB.center.x)
+    let distanceY = fabs(viewA.center.y - viewB.center.y)
+    return Double(sqrt(pow(distanceX, 2) + pow(distanceY, 2)))
+}
+
 
 let splitViewTag = 111
 
@@ -110,6 +116,18 @@ class SplitResultView: UIView {
             let minH = contentH < max_H ? contentH : max_H
             self.collView.snp.updateConstraints { (make) in
                 make.height.equalTo(minH)
+            }
+            
+            let centerIndex = self.collView.indexPathsForVisibleItems.count/2
+            guard let centerCell = self.collView.cellForItem(at: IndexPath(item: centerIndex, section: 0)) else { return }
+            
+            for cell in self.collView.visibleCells {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0012 * distance(cell, viewB: centerCell)) {
+                    cell.transform = CGAffineTransform.init(scaleX: 0.7, y: 0.5)
+                    UIView.animate(withDuration: 0.2, animations: {
+                        cell.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                    })
+                }
             }
         }
     }
