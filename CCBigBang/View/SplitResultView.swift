@@ -68,7 +68,6 @@ class SplitResultView: UIView {
     convenience init(models:[WordModel]) {
         self.init(frame: CGRect.init(x: 0, y: 0, width: s_width, height: s_height))
         dataSource = models
-        collView.reloadData()
     }
     
     private override init(frame: CGRect) {
@@ -84,12 +83,12 @@ class SplitResultView: UIView {
         collView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalTo(frame.width * 0.9)
-            make.height.equalTo(frame.height * 0.6)
+            make.height.equalTo(frame.height * 0.5)
         }
         
         self.addSubview(clearBtn)
         clearBtn.snp.makeConstraints { (make) in
-            make.top.equalTo(collView.snp.bottom).offset(15)
+            make.top.equalTo(collView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         
@@ -104,6 +103,15 @@ class SplitResultView: UIView {
     func show() -> () {
         guard let kwindow = UIApplication.shared.delegate?.window else { return }
         kwindow?.addSubview(self)
+        
+        collView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+            let contentH = self.collView.contentSize.height; let max_H = self.bounds.height * 0.5
+            let minH = contentH < max_H ? contentH : max_H
+            self.collView.snp.updateConstraints { (make) in
+                make.height.equalTo(minH)
+            }
+        }
     }
     
 }
