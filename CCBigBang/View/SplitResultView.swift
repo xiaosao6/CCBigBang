@@ -65,7 +65,13 @@ class SplitResultView: UIView {
         return btn
     }()
     
-    override init(frame: CGRect) {
+    convenience init(models:[WordModel]) {
+        self.init(frame: CGRect.init(x: 0, y: 0, width: s_width, height: s_height))
+        dataSource = models
+        collView.reloadData()
+    }
+    
+    private override init(frame: CGRect) {
         super.init(frame: frame)
         self.tag = splitViewTag
         
@@ -95,15 +101,9 @@ class SplitResultView: UIView {
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    func refreshWithDatas(_ datas:[WordModel]?) -> () {
-        if let datas_ = datas {
-            dataSource = datas_
-            refreshCollViewHeight()
-        }
-    }
-    
-    fileprivate func refreshCollViewHeight() -> () {
-        collView.reloadData()
+    func show() -> () {
+        guard let kwindow = UIApplication.shared.delegate?.window else { return }
+        kwindow?.addSubview(self)
     }
     
 }
@@ -113,7 +113,7 @@ extension SplitResultView {
     @objc fileprivate func clearClicked(_ btn: UIButton) -> () {
         if selectedPaths.count > 0 {
             selectedPaths.removeAll()
-            refreshCollViewHeight()
+            collView.reloadData()
         }else{
             self.removeFromSuperview()
         }

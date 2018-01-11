@@ -74,9 +74,8 @@ class ViewController: UIViewController {
     
     @objc private func splitClicked() -> () {
         dataSource = LocalSegmentor.cutIntoModel(withInput: inputTV.text)
-        let splitView = SplitResultView.init(frame: CGRect(x: 0, y: 0, width: s_width, height: s_height))
-        splitView.refreshWithDatas(dataSource)
-        self.view.addSubview(splitView)
+        let splitView = SplitResultView.init(models: dataSource)
+        splitView.show()
         
 //        var params = Dictionary<String, String>.init()
 //        params.updateValue(api_key, forKey: "api_key")
