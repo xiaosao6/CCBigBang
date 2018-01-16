@@ -51,17 +51,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SwitchCell.self), for: indexPath) as! SwitchCell
         if indexPath.row < dataSource.count-1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SwitchCell.self), for: indexPath) as! SwitchCell
             cell.titlelabel.text = dataSource[indexPath.row].keys.first
             cell.switch_.tag = 110 + indexPath.row
             cell.switch_.isOn = dataSource[indexPath.row].values.first as! Bool
             cell.switch_.addTarget(self, action: #selector(switchOfCellChanged(switch_:)), for: .valueChanged)
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.colorPickerReuseId, for: indexPath) as! SwitchCell
-            cell.titlelabel.text = dataSource[indexPath.row].keys.first
-            cell.colorDisplayView.backgroundColor = UIColor.colorOfRGB(hex: dataSource[indexPath.row].values.first as! String)
+            return cell
         }
+        let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.colorPickerReuseId, for: indexPath) as! SwitchCell
+        cell.titlelabel.text = dataSource[indexPath.row].keys.first
+        cell.colorDisplayView.backgroundColor = UIColor.colorOfRGB(hex: dataSource[indexPath.row].values.first as! String)
         return cell
     }
     
