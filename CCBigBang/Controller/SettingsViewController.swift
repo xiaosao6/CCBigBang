@@ -11,7 +11,7 @@ import UIKit
 /// 设置界面
 class SettingsViewController: UIViewController {
     
-    let dataSource = [["云端分词": UserDefaults.standard.bool(forKey: "CloudSegmentSettingKey")],
+    var dataSource = [["云端分词": UserDefaults.standard.bool(forKey: "CloudSegmentSettingKey")],
                       ["更大字体": UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey") == 20.0],
                       ["更多拷贝历史": UserDefaults.standard.integer(forKey: "PasteHistorySizeSettingKey") == 20],
                       ["词语选中颜色": UserDefaults.standard.string(forKey: "SegmentCellBgColorSettingKey") ?? ""]]
@@ -53,7 +53,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         var cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SwitchCell.self), for: indexPath) as! SwitchCell
         if indexPath.row < dataSource.count-1 {
             cell.titlelabel.text = dataSource[indexPath.row].keys.first
+            cell.switch_.tag = 110 + indexPath.row
             cell.switch_.isOn = dataSource[indexPath.row].values.first as! Bool
+            cell.switch_.addTarget(self, action: #selector(switchOfCellChanged(switch_:)), for: .valueChanged)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.colorPickerReuseId, for: indexPath) as! SwitchCell
             cell.titlelabel.text = dataSource[indexPath.row].keys.first
@@ -67,4 +69,24 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
+}
+
+extension SettingsViewController {
+    
+    @objc func switchOfCellChanged(switch_:UISwitch) -> () {
+        let index = (switch_.tag - 110)
+        let settingtitle = dataSource[index].keys.first!
+        dataSource[index].updateValue(switch_.isOn, forKey: settingtitle)
+        
+        switch settingtitle {
+        case "云端分词":
+            UserDefaults.standard.set(switch_.isOn, forKey: "CloudSegmentSettingKey")
+        case "更大字体":
+            UserDefaults.standard.set(switch_.isOn ? 20.0 : 16.0, forKey: "SegmentFontSizeSettingKey")
+        case "更多拷贝历史":
+            UserDefaults.standard.set(switch_.isOn ? 20 : 10, forKey: "PasteHistorySizeSettingKey")
+        default: break
+        }
+        UserDefaults.standard.synchronize()
+    }
 }
