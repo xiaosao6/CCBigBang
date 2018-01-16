@@ -14,7 +14,7 @@ let pasteHistoryCacheKey = "PasteHistoryCacheKey"
 /// 剪贴板历史界面
 class PasteHistoryViewController: UIViewController {
     
-    fileprivate var dataSource = [Dictionary<String, Date>]()
+    fileprivate var historySource = [Dictionary<String, Date>]()
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter.init()
@@ -55,7 +55,7 @@ class PasteHistoryViewController: UIViewController {
         }
         
         if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) {
-            dataSource = arr as! Array<[String:Date]>
+            historySource = arr as! Array<[String:Date]>
         }
     }
     
@@ -63,11 +63,14 @@ class PasteHistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let tmpString = UIPasteboard.general.string ?? ""
-        if dataSource.map({ (dict) -> String in
+        if historySource.map({ (dict) -> String in
             return dict.keys.first ?? ""
         }).contains(tmpString) { return }
-        dataSource.insert([tmpString: Date.init()], at: 0)
-        refreshHistoryCache(newStrs: dataSource)
+        
+        historySource.insert([tmpString: Date.init()], at: 0)
+        if historySource.count > UserDefaults.standard.integer(forKey: "PasteHistorySizeSettingKey") { historySource.removeLast() }
+        
+        refreshHistoryCache(newStrs: historySource)
         tbView.reloadData()
     }
     
@@ -78,36 +81,46 @@ class PasteHistoryViewController: UIViewController {
     }
     
     @objc private func clearClick() -> () {
-        refreshHistoryCache(newStrs: nil)
-        dataSource.removeAll()
-        tbView.reloadData()
+        let alt = UIAlertController.init(title: "提示", message: "确定清除拷贝历史？", preferredStyle: .alert)
+        alt.addAction(UIAlertAction.init(title: "确定", style: .default, handler: { [weak self] (_) in
+            self?.refreshHistoryCache(newStrs: nil)
+            self?.historySource.removeAll(); self?.tbView.reloadData()
+            self?.viewDeckController?.closeSide(true)
+        }))
+        alt.addAction(UIAlertAction.init(title: "取消", style: .cancel, handler: nil))
+        self.present(alt, animated: true, completion: nil)
     }
 }
 
 extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return historySource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(PasteHistoryCell.self), for: indexPath) as! PasteHistoryCell
-        cell.contentLabel.text = dataSource[indexPath.row].keys.first
-        cell.timeLabel.text = dateFormatter.string(from: dataSource[indexPath.row].values.first ?? Date())
+        cell.contentLabel.text = historySource[indexPath.row].keys.first
+        cell.timeLabel.text = dateFormatter.string(from: historySource[indexPath.row].values.first ?? Date())
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if let centerNavVC:UINavigationController = self.viewDeckController?.centerViewController as? UINavigationController,
+           let centerVC:ViewController = centerNavVC.viewControllers.first as? ViewController {
+            centerVC.inputTV.text = historySource[indexPath.row].keys.first
+            self.viewDeckController?.closeSide(true)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let action = UITableViewRowAction.init(style: .destructive, title: "删除") { (act, indexpath) in
-            self.dataSource.remove(at: indexpath.row)
-            self.refreshHistoryCache(newStrs: self.dataSource)
+            self.historySource.remove(at: indexpath.row)
+            self.refreshHistoryCache(newStrs: self.historySource)
             self.tbView.deleteRows(at: [indexpath], with: .fade)
         }
         return [action]
