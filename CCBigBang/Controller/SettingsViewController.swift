@@ -11,6 +11,8 @@ import UIKit
 /// 设置界面
 class SettingsViewController: UIViewController {
     
+    let dataSource = [["云端分词": false], ["更大字体": false], ["更多拷贝历史": false], ["词语选中颜色": "3592FF"]]
+    
     lazy var tbView: UITableView = {
         let tmptbView = UITableView.init(frame: CGRect.zero, style: .plain)
         tmptbView.delegate = self; tmptbView.dataSource = self
@@ -40,13 +42,15 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SwitchCell.self), for: indexPath) as! SwitchCell
-        cell.titlelabel.text = "云端分词"
-        cell.switch_.isOn = false
+        if indexPath.row < dataSource.count-1 {
+            cell.titlelabel.text = dataSource[indexPath.row].keys.first
+            cell.switch_.isOn = dataSource[indexPath.row].values.first as! Bool
+        }
         return cell
     }
     
