@@ -59,6 +59,8 @@ class SwitchCell: UITableViewCell {
     
     lazy var colorDisplayView: UIView = {
         let tmpv = UIView.init()
+        tmpv.layer.cornerRadius = 8
+        tmpv.layer.masksToBounds = true
         return tmpv
     }()
     
@@ -87,5 +89,12 @@ class SwitchCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        let color = UIColor.colorOfRGB(hex: UserDefaults.standard.string(forKey: "SegmentCellBgColorSettingKey") ?? "")
+        colorDisplayView.backgroundColor = color
+    }
     
 }
