@@ -69,6 +69,10 @@ extension AppDelegate {
             UserDefaults.standard.set(10, forKey: "PasteHistorySizeSettingKey")
             UserDefaults.standard.synchronize()
         }
+        if UserDefaults.standard.string(forKey: "SegmentCellBgColorSettingKey") == nil {
+            UserDefaults.standard.set("#3592FF", forKey: "SegmentCellBgColorSettingKey")
+            UserDefaults.standard.synchronize()
+        }
     }
 }
 
