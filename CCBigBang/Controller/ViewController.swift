@@ -27,8 +27,8 @@ class ViewController: UIViewController {
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.cornerRadius = 6
-        textView.font = UIFont.systemFont(ofSize: 15)
-        textView.zw_placeHolder = "请输入待分词的文字"
+        textView.font = UIFont.systemFont(ofSize: CGFloat(UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey")))
+        textView.zw_placeHolder = "您可以手动输入待分词的文字"
         textView.returnKeyType = .done
         textView.delegate = self
         return textView

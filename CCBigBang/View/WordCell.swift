@@ -15,7 +15,7 @@ class WordCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel.init()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: CGFloat(UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey")))
         label.textAlignment = .center
 //        label.layer.backgroundColor = UIColor.lightGray.cgColor
         label.layer.masksToBounds = true

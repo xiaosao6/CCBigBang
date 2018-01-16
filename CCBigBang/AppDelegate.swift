@@ -20,17 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         
-        let centerVC = ViewController()
-        let navCenterVC = UINavigationController.init(rootViewController: centerVC)
-        
-        let rightVC = PasteHistoryViewController()
-        let navRightVC = UINavigationController.init(rootViewController: rightVC)
-        let leftVC = SettingsViewController()
-        let navLeftVC = UINavigationController.init(rootViewController: leftVC)
+        let navCenterVC = UINavigationController.init(rootViewController: ViewController())
+        let navRightVC = UINavigationController.init(rootViewController: PasteHistoryViewController())
+        let navLeftVC = UINavigationController.init(rootViewController: SettingsViewController())
         
         let viewDeckController = IIViewDeckController.init(center: navCenterVC, leftViewController: navLeftVC, rightViewController: navRightVC)
         self.window?.rootViewController = viewDeckController
         self.window?.makeKeyAndVisible()
+        
+        initSettings()
         
         return true
     }
@@ -58,5 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate {
+    
+    func initSettings() -> () {
+        if UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey") == 0.0 {
+            UserDefaults.standard.set(16.0, forKey: "SegmentFontSizeSettingKey")
+            UserDefaults.standard.synchronize()
+        }
+        if UserDefaults.standard.integer(forKey: "PasteHistorySizeSettingKey") == 0 {
+            UserDefaults.standard.set(10, forKey: "PasteHistorySizeSettingKey")
+            UserDefaults.standard.synchronize()
+        }
+    }
 }
 

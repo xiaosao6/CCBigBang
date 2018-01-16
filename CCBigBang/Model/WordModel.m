@@ -28,7 +28,7 @@
 -(void)setCont:(NSString *)cont{
     _cont = [cont copy];
     
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15]};
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] floatForKey:@"SegmentFontSizeSettingKey"]]};
     CGSize size = [_cont boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 0) options:
                    NSStringDrawingTruncatesLastVisibleLine
                    | NSStringDrawingUsesLineFragmentOrigin
