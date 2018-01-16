@@ -54,6 +54,15 @@ class ViewController: UIViewController {
             make.right.equalToSuperview().inset(20)
         }
         
+        let settingBtn = UIButton.init(type: .system)
+        settingBtn.setTitle("设置", for: .normal)
+        settingBtn.addTarget(self, action: #selector(settingBtnClicked), for: .touchUpInside)
+        self.view.addSubview(settingBtn)
+        settingBtn.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().inset(50)
+            make.left.equalToSuperview().inset(20)
+        }
+        
         self.view.addSubview(inputTV)
         inputTV.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
@@ -95,6 +104,11 @@ class ViewController: UIViewController {
     @objc private func historyBtnClicked() -> () {
         viewDeckController?.rightViewController?.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
         viewDeckController?.open(.right, animated: true)
+    }
+    
+    @objc private func settingBtnClicked() -> () {
+        viewDeckController?.leftViewController?.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
+        viewDeckController?.open(.left, animated: true)
     }
 }
 

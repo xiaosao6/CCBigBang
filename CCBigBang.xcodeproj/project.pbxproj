@@ -17,6 +17,8 @@
 		4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE31FF7CFB3006D06B8 /* WordModel.m */; };
 		4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4525FDE61FF7DBD7006D06B8 /* WordCell.swift */; };
 		452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */; };
+		455A3250200CF4B20065D8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A324F200CF4B20065D8EA /* SettingsViewController.swift */; };
+		455A3252200CF4F20065D8EA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A3251200CF4F20065D8EA /* SwitchCell.swift */; };
 		455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */; };
 		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
 		45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BE2003459600D4B096 /* SplitResultView.swift */; };
@@ -106,6 +108,8 @@
 		4525FDE31FF7CFB3006D06B8 /* WordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordModel.m; sourceTree = "<group>"; };
 		4525FDE61FF7DBD7006D06B8 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryViewController.swift; sourceTree = "<group>"; };
+		455A324F200CF4B20065D8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		455A3251200CF4F20065D8EA /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryCell.swift; sourceTree = "<group>"; };
 		45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWPlaceHolder.h"; sourceTree = "<group>"; };
 		45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWPlaceHolder.m"; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				4525FDE61FF7DBD7006D06B8 /* WordCell.swift */,
 				455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */,
 				45DBE8BE2003459600D4B096 /* SplitResultView.swift */,
+				455A3251200CF4F20065D8EA /* SwitchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			children = (
 				45F062A51FF6208500C96EC5 /* ViewController.swift */,
 				452FAF6B1FFB6D6700C40C88 /* PasteHistoryViewController.swift */,
+				455A324F200CF4B20065D8EA /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -606,10 +612,12 @@
 				45F062BD1FF635B500C96EC5 /* HttpRequest.m in Sources */,
 				45F062A41FF6208500C96EC5 /* AppDelegate.swift in Sources */,
 				451334A01FFF6A5E000EF74D /* Segmentor.cpp in Sources */,
+				455A3250200CF4B20065D8EA /* SettingsViewController.swift in Sources */,
 				4525FDE71FF7DBD7006D06B8 /* WordCell.swift in Sources */,
 				452FAF6C1FFB6D6700C40C88 /* PasteHistoryViewController.swift in Sources */,
 				4525FDE41FF7CFB3006D06B8 /* WordModel.m in Sources */,
 				45F062BF1FF635B500C96EC5 /* HttpUtil.m in Sources */,
+				455A3252200CF4F20065D8EA /* SwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

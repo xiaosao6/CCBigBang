@@ -20,13 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         
-        let centerViewController = ViewController()
-        let navigationController = UINavigationController.init(rootViewController: centerViewController)
+        let centerVC = ViewController()
+        let navCenterVC = UINavigationController.init(rootViewController: centerVC)
         
-        let sideViewController = PasteHistoryViewController()
-        let sideNavigationController = UINavigationController.init(rootViewController: sideViewController)
+        let rightVC = PasteHistoryViewController()
+        let navRightVC = UINavigationController.init(rootViewController: rightVC)
+        let leftVC = SettingsViewController()
+        let navLeftVC = UINavigationController.init(rootViewController: leftVC)
         
-        let viewDeckController = IIViewDeckController.init(center: navigationController, rightViewController: sideNavigationController)
+        let viewDeckController = IIViewDeckController.init(center: navCenterVC, leftViewController: navLeftVC, rightViewController: navRightVC)
         self.window?.rootViewController = viewDeckController
         self.window?.makeKeyAndVisible()
         
