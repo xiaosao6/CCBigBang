@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.cornerRadius = 6
-        textView.font = UIFont.systemFont(ofSize: CGFloat(UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey")))
+        textView.font = UIFont.systemFont(ofSize: 16.5)
         textView.zw_placeHolder = "您可以手动输入待分词的文字"
         textView.returnKeyType = .done
         textView.delegate = self
@@ -80,25 +80,25 @@ class ViewController: UIViewController {
     }
     
     @objc private func splitClicked() -> () {
-        let splitView = SplitResultView.init(models: LocalSegmentor.cutIntoModel(withInput: inputTV.text))
-        splitView.show()
-        
-//        var params = Dictionary<String, String>.init()
-//        params.updateValue(api_key, forKey: "api_key")
-//        params.updateValue(inputTV.text, forKey: "text")
-//        params.updateValue("ws", forKey: "pattern")
-//        params.updateValue("json", forKey: "format")
-//
-//        let request = HttpRequest(url: base_url, params: params)
-//        NSLog("\(request.reqPrint())")
-//
-//        MBProgressHUD.showAdded(to: self.view, animated: true)
-//        HttpUtil.util().sendReq(request) { [weak self] (list, err) in
-//            MBProgressHUD.hide(for: self?.view, animated: true)
-//            guard let models = list else { return }
-//            self?.dataSource = models
-//            self?.splitView.refreshWithDatas(self?.dataSource)
-//        }
+        if UserDefaults.standard.bool(forKey: "CloudSegmentSettingKey") {
+            var params = Dictionary<String, String>.init()
+            params.updateValue(api_key, forKey: "api_key")
+            params.updateValue(inputTV.text, forKey: "text")
+            params.updateValue("ws", forKey: "pattern")
+            params.updateValue("json", forKey: "format")
+            
+            let request = HttpRequest(url: base_url, params: params)
+            NSLog("\(request.reqPrint())")
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            HttpUtil.util().sendReq(request) { [weak self] (list, err) in
+                MBProgressHUD.hide(for: self?.view, animated: true)
+                guard let models = list else { return }
+                SplitResultView.init(models: models).show()
+            }
+        } else {
+            SplitResultView.init(models: LocalSegmentor.cutIntoModel(withInput: inputTV.text)).show()
+        }
     }
     
     @objc private func historyBtnClicked() -> () {

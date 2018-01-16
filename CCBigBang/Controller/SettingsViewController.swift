@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast
 
 /// 设置界面
 class SettingsViewController: UIViewController {
@@ -85,6 +86,7 @@ extension SettingsViewController {
             UserDefaults.standard.set(switch_.isOn ? 20.0 : 16.0, forKey: "SegmentFontSizeSettingKey")
         case "更多拷贝历史":
             UserDefaults.standard.set(switch_.isOn ? 20 : 10, forKey: "PasteHistorySizeSettingKey")
+            view.makeToast("拷贝最多记录\(switch_.isOn ? 20 : 10)条", duration: 0.8, position: CSToastPositionCenter)
         default: break
         }
         UserDefaults.standard.synchronize()
