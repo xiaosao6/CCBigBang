@@ -20,6 +20,9 @@
 		455A3250200CF4B20065D8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A324F200CF4B20065D8EA /* SettingsViewController.swift */; };
 		455A3252200CF4F20065D8EA /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A3251200CF4F20065D8EA /* SwitchCell.swift */; };
 		455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */; };
+		4589AAE0200F3FB30095158A /* RoundColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4589AADF200F3FB30095158A /* RoundColorPicker.m */; };
+		4589AAE2200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
+		4589AAE3200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
 		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
 		45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BE2003459600D4B096 /* SplitResultView.swift */; };
 		45DBE9052003719300D4B096 /* UIImage+CC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE9042003719300D4B096 /* UIImage+CC_Category.m */; };
@@ -111,6 +114,9 @@
 		455A324F200CF4B20065D8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		455A3251200CF4F20065D8EA /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteHistoryCell.swift; sourceTree = "<group>"; };
+		4589AADE200F3FB30095158A /* RoundColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundColorPicker.h; sourceTree = "<group>"; };
+		4589AADF200F3FB30095158A /* RoundColorPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundColorPicker.m; sourceTree = "<group>"; };
+		4589AAE1200F40750095158A /* palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette.png; sourceTree = "<group>"; };
 		45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWPlaceHolder.h"; sourceTree = "<group>"; };
 		45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWPlaceHolder.m"; sourceTree = "<group>"; };
 		45DBE8BE2003459600D4B096 /* SplitResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitResultView.swift; sourceTree = "<group>"; };
@@ -252,10 +258,13 @@
 		4525FDE51FF7DBA8006D06B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4589AAE1200F40750095158A /* palette.png */,
 				4525FDE61FF7DBD7006D06B8 /* WordCell.swift */,
 				455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */,
 				45DBE8BE2003459600D4B096 /* SplitResultView.swift */,
 				455A3251200CF4F20065D8EA /* SwitchCell.swift */,
+				4589AADE200F3FB30095158A /* RoundColorPicker.h */,
+				4589AADF200F3FB30095158A /* RoundColorPicker.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F062AE1FF6208500C96EC5 /* LaunchScreen.storyboard in Resources */,
+				4589AAE2200F40760095158A /* palette.png in Resources */,
 				45F062AB1FF6208500C96EC5 /* Assets.xcassets in Resources */,
 				4513349F1FFF6A5E000EF74D /* iosjieba.bundle in Resources */,
 			);
@@ -488,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F9597F1FFE0A16004A1305 /* MainInterface.storyboard in Resources */,
+				4589AAE3200F40760095158A /* palette.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +616,7 @@
 			files = (
 				455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */,
 				45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */,
+				4589AAE0200F3FB30095158A /* RoundColorPicker.m in Sources */,
 				45DBE9052003719300D4B096 /* UIImage+CC_Category.m in Sources */,
 				45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */,
 				45F062A61FF6208500C96EC5 /* ViewController.swift in Sources */,
