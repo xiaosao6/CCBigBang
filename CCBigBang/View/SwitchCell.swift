@@ -97,4 +97,11 @@ class SwitchCell: UITableViewCell {
         colorDisplayView.backgroundColor = color
     }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        
+        let color = UIColor.colorOfRGB(hex: UserDefaults.standard.string(forKey: "SegmentCellBgColorSettingKey") ?? "")
+        colorDisplayView.backgroundColor = color
+    }
+    
 }
