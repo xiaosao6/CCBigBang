@@ -123,16 +123,45 @@
 
 
 
-@interface RoundColorPicker ()
+@interface RoundColorPicker () {
+    UIColor *_tmpColor;
+}
 @property (nonatomic, strong) WSColorImageView *colorImgv;
 @end
 
 @implementation RoundColorPicker
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self addSubview:self.colorImgv];
+-(instancetype)initWithColor:(UIColor *)color{
+    if (self = [super init]) {
+        _tmpColor = color;
     } return self;
+}
+
+-(void)showInView:(UIView *)superView{
+    UIView *mask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(superView.bounds), CGRectGetHeight(superView.bounds))];
+    mask.tag = 666;
+    mask.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.3];
+    [mask addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgMaskTapped:)]];
+    [superView addSubview:mask];
+    
+    self.frame = CGRectMake(0.5*(CGRectGetWidth(superView.bounds)-120), CGRectGetHeight(superView.bounds)-120, 120, 120);
+    [self addSubview:self.colorImgv];
+    [superView addSubview:self];
+}
+
+-(void)dismiss{
+    [[self.superview viewWithTag:666] removeFromSuperview];
+    [self removeFromSuperview];
+}
+
+#pragma mark -
+#pragma mark - Private
+-(void)bgMaskTapped:(UITapGestureRecognizer *)tapgr{
+    [self dismiss];
+}
+
+-(void)dealloc{
+    NSLog(@"%@ 销毁了",self.class.description);
 }
 
 #pragma mark - getter/setter

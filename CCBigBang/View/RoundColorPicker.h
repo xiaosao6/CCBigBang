@@ -13,4 +13,8 @@
  */
 @interface RoundColorPicker : UIView
 
+-(instancetype)initWithColor:(UIColor *)color;
+
+-(void)showInView:(UIView *)superView;
+
 @end
