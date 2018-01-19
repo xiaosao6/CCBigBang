@@ -129,6 +129,10 @@
 @property (nonatomic, strong) WSColorImageView *colorImgv;
 @end
 
+static const CGFloat pickerHeight = 220;
+static const CGFloat paletteSize  = 120;
+static const CGFloat paletteLRGap = 30;
+
 @implementation RoundColorPicker
 
 -(instancetype)initWithColor:(UIColor *)color{
@@ -140,11 +144,13 @@
 -(void)showInView:(UIView *)superView{
     UIView *mask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(superView.bounds), CGRectGetHeight(superView.bounds))];
     mask.tag = 666;
-    mask.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.3];
+    mask.backgroundColor = [UIColor colorWithWhite:0.6 alpha:0.2];
     [mask addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgMaskTapped:)]];
     [superView addSubview:mask];
     
-    self.frame = CGRectMake(0.5*(CGRectGetWidth(superView.bounds)-120), CGRectGetHeight(superView.bounds)-120, 120, 120);
+    self.frame = CGRectMake(0.5*(superView.bounds.size.width-(paletteSize+2*paletteLRGap)), 0.5*(superView.bounds.size.height-pickerHeight), paletteSize+2*paletteLRGap, pickerHeight);
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.cornerRadius = 10;
     [self addSubview:self.colorImgv];
     [superView addSubview:self];
 }
@@ -167,7 +173,7 @@
 #pragma mark - getter/setter
 -(WSColorImageView *)colorImgv{
     if (_colorImgv) { return _colorImgv; }
-    _colorImgv = [[WSColorImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
+    _colorImgv = [[WSColorImageView alloc] initWithFrame:CGRectMake(paletteLRGap, pickerHeight-paletteSize-15, paletteSize, paletteSize)];
     return _colorImgv;
 }
 
