@@ -144,7 +144,7 @@ static const CGFloat paletteLRGap = 30;
 -(void)showInView:(UIView *)superView{
     UIView *mask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(superView.bounds), CGRectGetHeight(superView.bounds))];
     mask.tag = 666;
-    mask.backgroundColor = [UIColor colorWithWhite:0.6 alpha:0.2];
+    mask.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
     [mask addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgMaskTapped:)]];
     [superView addSubview:mask];
     
@@ -152,6 +152,13 @@ static const CGFloat paletteLRGap = 30;
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 10;
     [self addSubview:self.colorImgv];
+    
+    UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, self.bounds.size.width-15*2, 60)];
+    infoLabel.textAlignment = NSTextAlignmentCenter;
+    infoLabel.numberOfLines = 0;
+    infoLabel.text = @"触摸以修改颜色, 松开确定";
+    [self addSubview:infoLabel];
+    
     [superView addSubview:self];
 }
 
