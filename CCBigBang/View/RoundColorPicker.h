@@ -13,6 +13,8 @@
  */
 @interface RoundColorPicker : UIView
 
+@property (nonatomic, weak) UIView *delegateView;
+
 -(instancetype)initWithColor:(UIColor *)color;
 
 -(void)showInView:(UIView *)superView;

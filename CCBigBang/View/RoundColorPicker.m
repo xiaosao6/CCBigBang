@@ -153,6 +153,11 @@ static const CGFloat paletteLRGap = 30;
     self.layer.cornerRadius = 10;
     [self addSubview:self.colorImgv];
     
+    __weak typeof(self.delegateView) wdelegate = self.delegateView;
+    self.colorImgv.currentColorBlock = ^(UIColor *color) {
+        wdelegate.backgroundColor = color;
+    };
+    
     UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, self.bounds.size.width-15*2, 60)];
     infoLabel.textAlignment = NSTextAlignmentCenter;
     infoLabel.numberOfLines = 0;
