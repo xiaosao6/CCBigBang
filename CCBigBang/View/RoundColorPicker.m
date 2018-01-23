@@ -158,8 +158,9 @@ static const CGFloat paletteLRGap = 30;
         wdelegate.backgroundColor = color;
     };
     
-    UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, self.bounds.size.width-15*2, 60)];
+    UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, self.bounds.size.width-15*2, 60)];
     infoLabel.textAlignment = NSTextAlignmentCenter;
+    infoLabel.font = [UIFont systemFontOfSize:13];
     infoLabel.numberOfLines = 0;
     infoLabel.text = @"触摸以修改颜色, 松开确定";
     [self addSubview:infoLabel];
