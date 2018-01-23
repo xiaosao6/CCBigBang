@@ -133,6 +133,7 @@ static const CGFloat pickerHeight = 220;
 static const CGFloat paletteSize  = 120;
 static const CGFloat paletteLRGap = 30;
 
+
 @implementation RoundColorPicker
 
 -(instancetype)initWithColor:(UIColor *)color{
