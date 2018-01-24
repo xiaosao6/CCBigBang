@@ -28,10 +28,9 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint pointL = [touch locationInView:self];
+    CGPoint pointL = [[touches anyObject] locationInView:self];
     
-    if (pow(pointL.x - self.bounds.size.width/2, 2)+pow(pointL.y-self.bounds.size.width/2, 2) <= pow(self.bounds.size.width/2, 2)) {
+    if ([self isPointInSelfCircle:pointL]) {
         UIColor *color = [self colorAtPixel:pointL];
         if (self.currentColorBlock) {
             self.currentColorBlock(color);
@@ -41,10 +40,9 @@
 
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint pointL = [touch locationInView:self];
+    CGPoint pointL = [[touches anyObject] locationInView:self];
     
-    if (pow(pointL.x - self.bounds.size.width/2, 2)+pow(pointL.y-self.bounds.size.width/2, 2) <= pow(self.bounds.size.width/2, 2)) {
+    if ([self isPointInSelfCircle:pointL]) {
         UIColor *color = [self colorAtPixel:pointL];
         if (self.currentColorBlock) {
             self.currentColorBlock(color);
@@ -55,10 +53,9 @@
 
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint pointL = [touch locationInView:self];
+    CGPoint pointL = [[touches anyObject] locationInView:self];
     
-    if (pow(pointL.x - self.bounds.size.width/2, 2)+pow(pointL.y-self.bounds.size.width/2, 2) <= pow(self.bounds.size.width/2, 2)) {
+    if ([self isPointInSelfCircle:pointL]) {
         UIColor *color = [self colorAtPixel:pointL];
         if (self.colorCompletionBlock) {
             self.colorCompletionBlock(color);
@@ -67,12 +64,16 @@
 }
 
 
+#pragma mark -
+#pragma mark - Private
+
+-(BOOL)isPointInSelfCircle:(CGPoint)pointL {
+    return (pow(pointL.x - self.bounds.size.width/2, 2)+pow(pointL.y-self.bounds.size.width/2, 2) <= pow(self.bounds.size.width/2, 2));
+}
 
 //获取图片某一点的颜色
 - (UIColor *)colorAtPixel:(CGPoint)point {
-    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.image.size.width, self.image.size.height), point)) {
-        return nil;
-    }
+    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.image.size.width, self.image.size.height), point)) { return nil; }
     
     NSInteger pointX = trunc(point.x);
     NSInteger pointY = trunc(point.y);
@@ -103,9 +104,11 @@
     CGFloat blue  = (CGFloat)pixelData[2] / 255.0f;
     CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
     
-    NSLog(@"R:%f   G:%f   B:%f   A:%f",red,green,blue,alpha);
+//    NSLog(@"R:%.3f   G:%.3f   B:%.3f   A:%.1f",red,green,blue,alpha);
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
+
+#pragma mark - getter/setter
 
 - (void)setImage:(UIImage *)image {
     CGSize imageSize = CGSizeMake(self.frame.size.width, self.frame.size.width); //CGSizeMake(25, 25)
@@ -155,19 +158,21 @@ static const CGFloat paletteLRGap = 30;
     self.layer.cornerRadius = 10;
     [self addSubview:self.colorImgv];
     
+    __weak typeof(self) wself = self;
     __weak typeof(self.delegate) wdelegate = self.delegate;
     self.colorImgv.currentColorBlock = ^(UIColor *color) {
         [wdelegate currentColorChangedTo:color];
     };
     self.colorImgv.colorCompletionBlock = ^(UIColor *color) {
         [wdelegate colorPickCompletedWith:color];
+        [wself dismiss];
     };
     
     UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, self.bounds.size.width-15*2, 60)];
     infoLabel.textAlignment = NSTextAlignmentCenter;
+    infoLabel.text = @"触摸以修改颜色, 松开确定";
     infoLabel.font = [UIFont systemFontOfSize:13];
     infoLabel.numberOfLines = 0;
-    infoLabel.text = @"触摸以修改颜色, 松开确定";
     [self addSubview:infoLabel];
     
     [superView addSubview:self];

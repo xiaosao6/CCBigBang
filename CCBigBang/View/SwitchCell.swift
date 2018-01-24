@@ -36,6 +36,13 @@ extension UIColor{
         return UIColor.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
     }
     
+    
+    func RGBString() -> String {
+        let colors = self.cgColor.components ?? [0.0, 0.0, 0.0]
+        let hexCol: String = String(format: "#%02x%02x%02x", Int(colors[0] * 255.0), Int(colors[1] * 255.0), Int(colors[2] * 255.0))
+        return hexCol
+    }
+    
 }
 
 
@@ -46,9 +53,9 @@ extension SwitchCell: ColorPickerDelegate {
     }
     
     func colorPickCompleted(with color: UIColor!) {
-//        colorDisplayView.backgroundColor = color
-//        UserDefaults.standard.set("#3592FF", forKey: "SegmentCellBgColorSettingKey")
-//        UserDefaults.standard.synchronize()
+        colorDisplayView.backgroundColor = color
+        UserDefaults.standard.set(color.RGBString(), forKey: "SegmentCellBgColorSettingKey")
+        UserDefaults.standard.synchronize()
     }
 }
 
