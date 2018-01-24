@@ -151,11 +151,11 @@ static const CGFloat paletteLRGap = 30;
     mask.tag = 666;
     mask.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
     [mask addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgMaskTapped:)]];
-    [superView addSubview:mask];
+    mask.alpha = 0;
     
     self.frame = CGRectMake(0.5*(superView.bounds.size.width-(paletteSize+2*paletteLRGap)), 0.5*(superView.bounds.size.height-pickerHeight), paletteSize+2*paletteLRGap, pickerHeight);
     self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 10;
+    self.layer.cornerRadius = 8;
     [self addSubview:self.colorImgv];
     
     __weak typeof(self) wself = self;
@@ -174,13 +174,29 @@ static const CGFloat paletteLRGap = 30;
     infoLabel.font = [UIFont systemFontOfSize:13];
     infoLabel.numberOfLines = 0;
     [self addSubview:infoLabel];
+    self.alpha = 0;
+    self.transform = CGAffineTransformMakeScale(0.5, 0.5);
     
+    [superView addSubview:mask];
     [superView addSubview:self];
+    [UIView animateWithDuration:0.15 animations:^{
+        mask.alpha = 1;
+        self.alpha = 1;
+        self.transform = CGAffineTransformMakeScale(1, 1);
+    } completion: nil];
 }
 
 -(void)dismiss{
-    [[self.superview viewWithTag:666] removeFromSuperview];
-    [self removeFromSuperview];
+    UIView *maskV = [self.superview viewWithTag:666];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        maskV.alpha = 0;
+        self.alpha  = 0;
+        self.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    } completion:^(BOOL finished) {
+        [maskV removeFromSuperview];
+        [self removeFromSuperview];
+    }];
 }
 
 #pragma mark -

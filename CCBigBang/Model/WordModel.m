@@ -38,7 +38,23 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.cornerBgImg = [[UIImage imageWithColor:[UIColor lightGrayColor] Size:self.rectSize] roundCorner:8];
-        self.cornerBgImg_Selected = [[UIImage imageWithColor:[UIColor cyanColor] Size:self.rectSize] roundCorner:8];
+
+        NSString *cString = [[NSUserDefaults standardUserDefaults] stringForKey:@"SegmentCellBgColorSettingKey"];
+        if (cString.length < 6)
+            cString = @"000000";
+        if ([cString hasPrefix:@"0X"] || [cString hasPrefix:@"0x"])
+            cString = [cString substringFromIndex:2];
+        if ([cString hasPrefix:@"#"])
+            cString = [cString substringFromIndex:1];
+        if (cString.length != 6)
+            cString = @"000000";
+        unsigned int r, g, b;
+        [[NSScanner scannerWithString:[cString substringWithRange:NSMakeRange(0, 2)]] scanHexInt:&r];
+        [[NSScanner scannerWithString:[cString substringWithRange:NSMakeRange(2, 2)]] scanHexInt:&g];
+        [[NSScanner scannerWithString:[cString substringWithRange:NSMakeRange(4, 2)]] scanHexInt:&b];
+        UIColor *color = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
+        
+        self.cornerBgImg_Selected = [[UIImage imageWithColor:color Size:self.rectSize] roundCorner:8];
     });
 }
 
