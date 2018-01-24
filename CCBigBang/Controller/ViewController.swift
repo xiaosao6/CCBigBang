@@ -37,6 +37,8 @@ class ViewController: UIViewController {
     lazy var reqBtn: UIButton = {
         let btn = UIButton.init(type: .system)
         btn.setTitle("分词", for: .normal)
+        btn.backgroundColor = UIColor.init(white: 0.7, alpha: 0.5)
+        btn.layer.cornerRadius = 6
         btn.addTarget(self, action: #selector(splitClicked), for: .touchUpInside)
         return btn
     }()
@@ -46,7 +48,7 @@ class ViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         let historyBtn = UIButton.init(type: .system)
-        historyBtn.setTitle("历史", for: .normal)
+        historyBtn.setImage(#imageLiteral(resourceName: "icon_history"), for: .normal)
         historyBtn.addTarget(self, action: #selector(historyBtnClicked), for: .touchUpInside)
         self.view.addSubview(historyBtn)
         historyBtn.snp.makeConstraints { (make) in
@@ -55,7 +57,7 @@ class ViewController: UIViewController {
         }
         
         let settingBtn = UIButton.init(type: .system)
-        settingBtn.setTitle("设置", for: .normal)
+        settingBtn.setImage(#imageLiteral(resourceName: "icon_setting"), for: .normal)
         settingBtn.addTarget(self, action: #selector(settingBtnClicked), for: .touchUpInside)
         self.view.addSubview(settingBtn)
         settingBtn.snp.makeConstraints { (make) in
@@ -72,6 +74,7 @@ class ViewController: UIViewController {
         self.view.addSubview(reqBtn)
         reqBtn.snp.makeConstraints { (make) in
             make.top.equalTo(inputTV.snp.bottom).offset(20)
+            make.size.equalTo(CGSize(width: 65, height: 35))
             make.centerX.equalToSuperview()
         }
         
