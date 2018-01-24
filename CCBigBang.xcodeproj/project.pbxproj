@@ -290,6 +290,25 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		45A7F57A20185E5800658187 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				45A7F57B20185E7E00658187 /* JieBaSegmentation */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		45A7F57B20185E7E00658187 /* JieBaSegmentation */ = {
+			isa = PBXGroup;
+			children = (
+				4513347C1FFF6A5E000EF74D /* iosjieba.bundle */,
+				4513347F1FFF6A5E000EF74D /* CppJieba */,
+				4513347E1FFF6A5E000EF74D /* Segmentor.h */,
+				4513347D1FFF6A5E000EF74D /* Segmentor.cpp */,
+			);
+			path = JieBaSegmentation;
+			sourceTree = "<group>";
+		};
 		45DBE8BA20033F9C00D4B096 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,12 +343,8 @@
 		45F062A21FF6208500C96EC5 /* CCBigBang */ = {
 			isa = PBXGroup;
 			children = (
+				45A7F57A20185E5800658187 /* Lib */,
 				45DBE8BA20033F9C00D4B096 /* Category */,
-				4513347E1FFF6A5E000EF74D /* Segmentor.h */,
-				4513347D1FFF6A5E000EF74D /* Segmentor.cpp */,
-				4513347F1FFF6A5E000EF74D /* CppJieba */,
-				4513347C1FFF6A5E000EF74D /* iosjieba.bundle */,
-				45F959891FFE0CAE004A1305 /* CCBigBang.entitlements */,
 				452FAF6A1FFB6C7200C40C88 /* Other */,
 				452FAF691FFB6C5200C40C88 /* Controller */,
 				45F062B51FF634E800C96EC5 /* HttpUtil */,
@@ -337,6 +352,7 @@
 				4525FDDF1FF68D1A006D06B8 /* Model */,
 				45F062A31FF6208500C96EC5 /* AppDelegate.swift */,
 				45F062B61FF635B400C96EC5 /* CCBigBang-Bridging-Header.h */,
+				45F959891FFE0CAE004A1305 /* CCBigBang.entitlements */,
 				45F062AF1FF6208500C96EC5 /* Info.plist */,
 			);
 			path = CCBigBang;
