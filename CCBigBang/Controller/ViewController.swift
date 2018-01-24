@@ -10,6 +10,7 @@ import UIKit
 import UICollectionViewLeftAlignedLayout
 import MBProgressHUD
 import ViewDeck
+import Toast
 
 let s_width  = UIScreen.main.bounds.width
 let s_height = UIScreen.main.bounds.height
@@ -83,6 +84,11 @@ class ViewController: UIViewController {
     }
     
     @objc private func splitClicked() -> () {
+        if inputTV.text.count == 0 {
+            view.makeToast("请输入待分词的文字", duration: 0.8, position: CSToastPositionCenter)
+            inputTV.becomeFirstResponder(); return
+        }
+        
         if UserDefaults.standard.bool(forKey: "CloudSegmentSettingKey") {
             var params = Dictionary<String, String>.init()
             params.updateValue(api_key, forKey: "api_key")

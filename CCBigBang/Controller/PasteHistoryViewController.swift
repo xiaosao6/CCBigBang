@@ -18,7 +18,7 @@ class PasteHistoryViewController: UIViewController {
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter.init()
-        formatter.dateFormat = "M月d日 HH:mm"
+        formatter.dateFormat = "M月d日" // "M月d日 HH:mm"
         return formatter
     }()
     
@@ -63,6 +63,7 @@ class PasteHistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let tmpString = UIPasteboard.general.string ?? ""
+        if tmpString.count == 0 { return }
         if historySource.map({ (dict) -> String in
             return dict.keys.first ?? ""
         }).contains(tmpString) { return }
