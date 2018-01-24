@@ -97,9 +97,8 @@ class SplitResultView: UIView {
     
     lazy var clearBtn: UIButton = {
         let btn = UIButton.init(type: .system)
-        btn.backgroundColor = UIColor.white
         btn.layer.cornerRadius = 6
-        btn.setTitle("  取消  ", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "icon_close"), for: .normal)
         btn.addTarget(self, action: #selector(clearClicked(_:)), for: .touchUpInside)
         return btn
     }()
