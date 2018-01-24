@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ColorPickerDelegate
+
+-(void)currentColorChangedTo:(UIColor *)color;
+-(void)colorPickCompletedWith:(UIColor *)color;
+
+@end
+
+
 /**
  拾色器
  */
 @interface RoundColorPicker : UIView
 
-@property (nonatomic, weak) UIView *delegateView;
+@property (nonatomic, weak) id <ColorPickerDelegate> delegate;
 
 -(instancetype)initWithColor:(UIColor *)color;
 

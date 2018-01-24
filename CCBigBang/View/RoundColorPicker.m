@@ -11,6 +11,7 @@
 
 @interface WSColorImageView : UIImageView
 @property (copy, nonatomic) void(^currentColorBlock)(UIColor *color);
+@property (copy, nonatomic) void(^colorCompletionBlock)(UIColor *color);
 @end
 
 @implementation WSColorImageView
@@ -59,8 +60,8 @@
     
     if (pow(pointL.x - self.bounds.size.width/2, 2)+pow(pointL.y-self.bounds.size.width/2, 2) <= pow(self.bounds.size.width/2, 2)) {
         UIColor *color = [self colorAtPixel:pointL];
-        if (self.currentColorBlock) {
-            self.currentColorBlock(color);
+        if (self.colorCompletionBlock) {
+            self.colorCompletionBlock(color);
         }
     }
 }
@@ -154,9 +155,12 @@ static const CGFloat paletteLRGap = 30;
     self.layer.cornerRadius = 10;
     [self addSubview:self.colorImgv];
     
-    __weak typeof(self.delegateView) wdelegate = self.delegateView;
+    __weak typeof(self.delegate) wdelegate = self.delegate;
     self.colorImgv.currentColorBlock = ^(UIColor *color) {
-        wdelegate.backgroundColor = color;
+        [wdelegate currentColorChangedTo:color];
+    };
+    self.colorImgv.colorCompletionBlock = ^(UIColor *color) {
+        [wdelegate colorPickCompletedWith:color];
     };
     
     UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, self.bounds.size.width-15*2, 60)];

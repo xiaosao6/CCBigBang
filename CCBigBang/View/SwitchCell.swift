@@ -39,6 +39,20 @@ extension UIColor{
 }
 
 
+extension SwitchCell: ColorPickerDelegate {
+    
+    func currentColorChanged(to color: UIColor!) {
+        colorDisplayView.backgroundColor = color
+    }
+    
+    func colorPickCompleted(with color: UIColor!) {
+//        colorDisplayView.backgroundColor = color
+//        UserDefaults.standard.set("#3592FF", forKey: "SegmentCellBgColorSettingKey")
+//        UserDefaults.standard.synchronize()
+    }
+}
+
+
 /// 开关Cell
 class SwitchCell: UITableViewCell {
     

@@ -71,7 +71,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.row == dataSource.count-1 {
             let cell = tableView.cellForRow(at: indexPath) as! SwitchCell
             let colorPicker = RoundColorPicker.init(color: UIColor.red)
-            colorPicker?.delegateView = cell.colorDisplayView
+            colorPicker?.delegate = cell
             colorPicker?.show(in: self.view)
         }
     }
