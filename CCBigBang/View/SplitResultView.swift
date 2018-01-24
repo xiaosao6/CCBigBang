@@ -97,8 +97,8 @@ class SplitResultView: UIView {
     
     lazy var clearBtn: UIButton = {
         let btn = UIButton.init(type: .system)
-        btn.layer.cornerRadius = 6
         btn.setImage(#imageLiteral(resourceName: "icon_close"), for: .normal)
+        btn.tintColor = UIColor.colorOfRGB(hex: UserDefaults.standard.string(forKey: "SegmentCellBgColorSettingKey") ?? "")
         btn.addTarget(self, action: #selector(clearClicked(_:)), for: .touchUpInside)
         return btn
     }()
