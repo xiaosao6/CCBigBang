@@ -26,6 +26,15 @@ func distance(_ viewA:UIView, viewB:UIView) -> Double {
     return Double(sqrt(pow(distanceX, 2) + pow(distanceY, 2)))
 }
 
+func topButton(titled: String?) -> UIButton {
+    let btn = UIButton.init(type: .system)
+    btn.setTitleColor(.white, for: .normal)
+    btn.setTitle(titled, for: .normal)
+    btn.backgroundColor = UIColor.darkGray
+    btn.layer.cornerRadius = 7
+    return btn
+}
+
 
 let splitViewTag = 111
 
@@ -62,6 +71,30 @@ class SplitResultView: UIView {
         return tmpcollView
     }()
     
+    lazy var translateBtn: UIButton = {
+        let btn = topButton(titled: "  翻译  ")
+        btn.addTarget(self, action: #selector(translateClicked(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    lazy var searchBtn: UIButton = {
+        let btn = topButton(titled: "  搜索  ")
+        btn.addTarget(self, action: #selector(searchClicked(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    lazy var shareBtn: UIButton = {
+        let btn = topButton(titled: "  分享  ")
+        btn.addTarget(self, action: #selector(shareClicked(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    lazy var copyBtn: UIButton = {
+        let btn = topButton(titled: "  复制  ")
+        btn.addTarget(self, action: #selector(copyClicked(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
     lazy var clearBtn: UIButton = {
         let btn = UIButton.init(type: .system)
         btn.backgroundColor = UIColor.white
@@ -96,6 +129,34 @@ class SplitResultView: UIView {
         clearBtn.snp.makeConstraints { (make) in
             make.top.equalTo(collView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
+        }
+        
+        let gap: CGFloat = 15
+        let btnSize = CGSize.init(width: (frame.size.width - gap * CGFloat(4 + 1))/4.0, height: 30)
+        
+        self.addSubview(translateBtn)
+        translateBtn.snp.makeConstraints { (make) in
+            make.bottom.equalTo(collView.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(gap)
+            make.size.equalTo(btnSize)
+        }
+        self.addSubview(searchBtn)
+        searchBtn.snp.makeConstraints { (make) in
+            make.bottom.equalTo(collView.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(2 * gap + 1 * btnSize.width)
+            make.size.equalTo(btnSize)
+        }
+        self.addSubview(shareBtn)
+        shareBtn.snp.makeConstraints { (make) in
+            make.bottom.equalTo(collView.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(3 * gap + 2 * btnSize.width)
+            make.size.equalTo(btnSize)
+        }
+        self.addSubview(copyBtn)
+        copyBtn.snp.makeConstraints { (make) in
+            make.bottom.equalTo(collView.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(4 * gap + 3 * btnSize.width)
+            make.size.equalTo(btnSize)
         }
         
         let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(_:)))
@@ -145,6 +206,22 @@ extension SplitResultView {
         }else{
             self.removeFromSuperview()
         }
+    }
+    
+    @objc fileprivate func translateClicked(_ btn: UIButton) -> () {
+        
+    }
+    
+    @objc fileprivate func searchClicked(_ btn: UIButton) -> () {
+        
+    }
+    
+    @objc fileprivate func shareClicked(_ btn: UIButton) -> () {
+        
+    }
+    
+    @objc fileprivate func copyClicked(_ btn: UIButton) -> () {
+        
     }
 }
 
