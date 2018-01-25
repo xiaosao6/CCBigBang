@@ -23,6 +23,7 @@
 		4589AAE0200F3FB30095158A /* RoundColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4589AADF200F3FB30095158A /* RoundColorPicker.m */; };
 		4589AAE2200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
 		4589AAE3200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
+		45C27E07201971DF008AB6D4 /* ResultTopButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C27E06201971DF008AB6D4 /* ResultTopButtonsView.swift */; };
 		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
 		45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BE2003459600D4B096 /* SplitResultView.swift */; };
 		45DBE9052003719300D4B096 /* UIImage+CC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE9042003719300D4B096 /* UIImage+CC_Category.m */; };
@@ -117,6 +118,7 @@
 		4589AADE200F3FB30095158A /* RoundColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundColorPicker.h; sourceTree = "<group>"; };
 		4589AADF200F3FB30095158A /* RoundColorPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundColorPicker.m; sourceTree = "<group>"; };
 		4589AAE1200F40750095158A /* palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette.png; sourceTree = "<group>"; };
+		45C27E06201971DF008AB6D4 /* ResultTopButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTopButtonsView.swift; sourceTree = "<group>"; };
 		45DBE8BB20033FB600D4B096 /* UITextView+ZWPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWPlaceHolder.h"; sourceTree = "<group>"; };
 		45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWPlaceHolder.m"; sourceTree = "<group>"; };
 		45DBE8BE2003459600D4B096 /* SplitResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitResultView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				4525FDE61FF7DBD7006D06B8 /* WordCell.swift */,
 				455C5AF31FFBCB32005EC496 /* PasteHistoryCell.swift */,
 				45DBE8BE2003459600D4B096 /* SplitResultView.swift */,
+				45C27E06201971DF008AB6D4 /* ResultTopButtonsView.swift */,
 				455A3251200CF4F20065D8EA /* SwitchCell.swift */,
 				4589AADE200F3FB30095158A /* RoundColorPicker.h */,
 				4589AADF200F3FB30095158A /* RoundColorPicker.m */,
@@ -630,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C27E07201971DF008AB6D4 /* ResultTopButtonsView.swift in Sources */,
 				455C5AF41FFBCB32005EC496 /* PasteHistoryCell.swift in Sources */,
 				45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */,
 				4589AAE0200F3FB30095158A /* RoundColorPicker.m in Sources */,

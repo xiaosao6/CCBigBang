@@ -26,14 +26,7 @@ func distance(_ viewA:UIView, viewB:UIView) -> Double {
     return Double(sqrt(pow(distanceX, 2) + pow(distanceY, 2)))
 }
 
-func topButton(titled: String?) -> UIButton {
-    let btn = UIButton.init(type: .system)
-    btn.setTitleColor(.white, for: .normal)
-    btn.setTitle(titled, for: .normal)
-    btn.backgroundColor = UIColor.darkGray
-    btn.layer.cornerRadius = 7
-    return btn
-}
+
 
 
 let splitViewTag = 111
@@ -71,28 +64,10 @@ class SplitResultView: UIView {
         return tmpcollView
     }()
     
-    lazy var translateBtn: UIButton = {
-        let btn = topButton(titled: "  翻译  ")
-        btn.addTarget(self, action: #selector(translateClicked(_:)), for: .touchUpInside)
-        return btn
-    }()
-    
-    lazy var searchBtn: UIButton = {
-        let btn = topButton(titled: "  搜索  ")
-        btn.addTarget(self, action: #selector(searchClicked(_:)), for: .touchUpInside)
-        return btn
-    }()
-    
-    lazy var shareBtn: UIButton = {
-        let btn = topButton(titled: "  分享  ")
-        btn.addTarget(self, action: #selector(shareClicked(_:)), for: .touchUpInside)
-        return btn
-    }()
-    
-    lazy var copyBtn: UIButton = {
-        let btn = topButton(titled: "  复制  ")
-        btn.addTarget(self, action: #selector(copyClicked(_:)), for: .touchUpInside)
-        return btn
+    lazy var topFuncView: ResultTopButtonsView = {
+        let tmpv = ResultTopButtonsView.init(frame: CGRect(x: 0, y: 0, width: s_width, height: 30))
+        tmpv.delegate = self
+        return tmpv
     }()
     
     lazy var clearBtn: UIButton = {
@@ -130,32 +105,11 @@ class SplitResultView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        let gap: CGFloat = 15
-        let btnSize = CGSize.init(width: (frame.size.width - gap * CGFloat(4 + 1))/4.0, height: 30)
-        
-        self.addSubview(translateBtn)
-        translateBtn.snp.makeConstraints { (make) in
+        self.addSubview(topFuncView)
+        topFuncView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(collView.snp.top).offset(-20)
-            make.left.equalToSuperview().offset(gap)
-            make.size.equalTo(btnSize)
-        }
-        self.addSubview(searchBtn)
-        searchBtn.snp.makeConstraints { (make) in
-            make.bottom.equalTo(collView.snp.top).offset(-20)
-            make.left.equalToSuperview().offset(2 * gap + 1 * btnSize.width)
-            make.size.equalTo(btnSize)
-        }
-        self.addSubview(shareBtn)
-        shareBtn.snp.makeConstraints { (make) in
-            make.bottom.equalTo(collView.snp.top).offset(-20)
-            make.left.equalToSuperview().offset(3 * gap + 2 * btnSize.width)
-            make.size.equalTo(btnSize)
-        }
-        self.addSubview(copyBtn)
-        copyBtn.snp.makeConstraints { (make) in
-            make.bottom.equalTo(collView.snp.top).offset(-20)
-            make.left.equalToSuperview().offset(4 * gap + 3 * btnSize.width)
-            make.size.equalTo(btnSize)
+            make.height.equalTo(30)
         }
         
         let gestureRecognizer = UIPanGestureRecognizer.init(target: self, action: #selector(handleGesture(_:)))
@@ -197,29 +151,29 @@ class SplitResultView: UIView {
 }
 
 extension SplitResultView {
-    
     @objc fileprivate func clearClicked(_ btn: UIButton) -> () {
         if selectedPaths.count > 0 {
-            selectedPaths.removeAll()
-            collView.reloadData()
-        }else{
+            selectedPaths.removeAll();  collView.reloadData()
+        } else {
             self.removeFromSuperview()
         }
     }
-    
-    @objc fileprivate func translateClicked(_ btn: UIButton) -> () {
+}
+
+extension SplitResultView: ResultTopButtonsProtocol{
+    func translateClicked(_ btn: UIButton) {
         
     }
     
-    @objc fileprivate func searchClicked(_ btn: UIButton) -> () {
+    func searchClicked(_ btn: UIButton) {
         
     }
     
-    @objc fileprivate func shareClicked(_ btn: UIButton) -> () {
+    func shareClicked(_ btn: UIButton) {
         
     }
     
-    @objc fileprivate func copyClicked(_ btn: UIButton) -> () {
+    func copyClicked(_ btn: UIButton) {
         
     }
 }
