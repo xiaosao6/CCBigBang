@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navCenterVC = UINavigationController.init(rootViewController: ViewController())
         let navRightVC = UINavigationController.init(rootViewController: PasteHistoryViewController())
+        navRightVC.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
         let navLeftVC = UINavigationController.init(rootViewController: SettingsViewController())
+        navLeftVC.preferredContentSize = CGSize.init(width: s_width*0.8, height: s_height)
         
         let viewDeckController = IIViewDeckController.init(center: navCenterVC, leftViewController: navLeftVC, rightViewController: navRightVC)
         self.window?.rootViewController = viewDeckController
