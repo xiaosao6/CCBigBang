@@ -123,9 +123,8 @@ class SplitResultView: UIView {
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    func show() -> () {
-        guard let kwindow = UIApplication.shared.delegate?.window else { return }
-        kwindow?.addSubview(self)
+    func show(inView: UIView?) -> () {
+        inView?.addSubview(self)
         
         collView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
@@ -166,7 +165,14 @@ extension SplitResultView {
 
 extension SplitResultView: ResultTopButtonsProtocol{
     func translateClicked(_ btn: UIButton) {
-        
+        var selectedStrings = [String]()
+        for model in dataSource {
+            if selectedPaths.contains(IndexPath(item: dataSource.index(of: model)!, section: 0)){
+                selectedStrings.append(model.cont)
+            }
+        }
+        let rvc = UIReferenceLibraryViewController.init(term: selectedStrings.joined(separator: ""))
+        UIApplication.shared.keyWindow?.rootViewController?.present(rvc, animated: true, completion: nil)
     }
     
     func searchClicked(_ btn: UIButton) {

@@ -103,10 +103,10 @@ class ViewController: UIViewController {
             HttpUtil.util().sendReq(request) { [weak self] (list, err) in
                 MBProgressHUD.hide(for: self?.view, animated: true)
                 guard let models = list else { return }
-                SplitResultView.init(models: models).show()
+                SplitResultView.init(models: models).show(inView: self?.view)
             }
         } else {
-            SplitResultView.init(models: LocalSegmentor.cutIntoModel(withInput: inputTV.text)).show()
+            SplitResultView.init(models: LocalSegmentor.cutIntoModel(withInput: inputTV.text)).show(inView: self.view)
         }
     }
     
