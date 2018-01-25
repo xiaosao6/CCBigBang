@@ -8,6 +8,7 @@
 
 import UIKit
 import UICollectionViewLeftAlignedLayout
+import Toast
 
 
 func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
@@ -165,13 +166,7 @@ extension SplitResultView {
 
 extension SplitResultView: ResultTopButtonsProtocol{
     func translateClicked(_ btn: UIButton) {
-        var selectedStrings = [String]()
-        for model in dataSource {
-            if selectedPaths.contains(IndexPath(item: dataSource.index(of: model)!, section: 0)){
-                selectedStrings.append(model.cont)
-            }
-        }
-        let rvc = UIReferenceLibraryViewController.init(term: selectedStrings.joined(separator: ""))
+        let rvc = UIReferenceLibraryViewController.init(term: currentSelectedStrings())
         UIApplication.shared.keyWindow?.rootViewController?.present(rvc, animated: true, completion: nil)
     }
     
@@ -184,7 +179,19 @@ extension SplitResultView: ResultTopButtonsProtocol{
     }
     
     func copyClicked(_ btn: UIButton) {
-        
+        UIPasteboard.general.string = currentSelectedStrings()
+        UIApplication.shared.keyWindow?.makeToast("文本已复制", duration: 0.8, position: CSToastPositionCenter)
+        self.removeFromSuperview()
+    }
+    
+    private func currentSelectedStrings() -> String {
+        var selectedStrings = [String]()
+        for model in dataSource {
+            if selectedPaths.contains(IndexPath(item: dataSource.index(of: model)!, section: 0)){
+                selectedStrings.append(model.cont)
+            }
+        }
+        return selectedStrings.joined(separator: "")
     }
 }
 
