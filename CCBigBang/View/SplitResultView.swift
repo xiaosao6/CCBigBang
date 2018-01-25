@@ -36,7 +36,9 @@ class SplitResultView: UIView {
     
     fileprivate var dataSource = [WordModel]()
     
-    fileprivate var selectedPaths = Set<IndexPath>()
+    fileprivate var selectedPaths = Set<IndexPath>(){
+        didSet{ topFuncView.isHidden = (selectedPaths.count == 0) }
+    }
     fileprivate var tmpPanPaths = Set<IndexPath>()
     
     fileprivate var isPanning = false
@@ -67,6 +69,7 @@ class SplitResultView: UIView {
     lazy var topFuncView: ResultTopButtonsView = {
         let tmpv = ResultTopButtonsView.init(frame: CGRect(x: 0, y: 0, width: s_width, height: 30))
         tmpv.delegate = self
+        tmpv.isHidden = true
         return tmpv
     }()
     
@@ -153,7 +156,8 @@ class SplitResultView: UIView {
 extension SplitResultView {
     @objc fileprivate func clearClicked(_ btn: UIButton) -> () {
         if selectedPaths.count > 0 {
-            selectedPaths.removeAll();  collView.reloadData()
+            selectedPaths.removeAll(); topFuncView.isHidden = true
+            collView.reloadData()
         } else {
             self.removeFromSuperview()
         }
@@ -233,6 +237,7 @@ extension SplitResultView {
         if selectedPaths.contains(indexPath) {
             setCellSelection(cell: cell, path:indexPath, selected: false)
             selectedPaths.remove(indexPath)
+            topFuncView.isHidden = (selectedPaths.count == 0)
         } else {
             setCellSelection(cell: cell, path:indexPath, selected: true)
             selectedPaths.insert(indexPath)

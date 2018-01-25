@@ -93,6 +93,12 @@ class ResultTopButtonsView: UIView {
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
+    override var isHidden: Bool{
+        didSet{
+            let hidden = isHidden
+            UIView.animate(withDuration: 0.2) { self.alpha = hidden ? 0.0 : 1.0 }
+        }
+    }
 }
 
 extension ResultTopButtonsView {
