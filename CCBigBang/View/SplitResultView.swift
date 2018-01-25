@@ -171,7 +171,11 @@ extension SplitResultView: ResultTopButtonsProtocol{
     }
     
     func searchClicked(_ btn: UIButton) {
-        
+        let content = (currentSelectedStrings() as NSString).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: "https://m.baidu.com/s?word=" + (content ?? ""))!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     func shareClicked(_ btn: UIButton) {
