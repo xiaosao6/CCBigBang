@@ -48,7 +48,7 @@ class ResultTopButtonsView: UIView {
     }()
     
     lazy var shareBtn: UIButton = {
-        let btn = topButton(titled: "  分享  ")
+        let btn = topButton(titled: "  发送  ")
         btn.addTarget(self, action: #selector(shareClicked(_:)), for: .touchUpInside)
         return btn
     }()

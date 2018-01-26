@@ -179,7 +179,9 @@ extension SplitResultView: ResultTopButtonsProtocol{
     }
     
     func shareClicked(_ btn: UIButton) {
-        
+        let textToShare = currentSelectedStrings()
+        let avc = UIActivityViewController.init(activityItems: [textToShare], applicationActivities: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(avc, animated: true, completion: nil)
     }
     
     func copyClicked(_ btn: UIButton) {
