@@ -17,7 +17,6 @@ class WordCell: UICollectionViewCell {
         let label = UILabel.init()
         label.font = UIFont.systemFont(ofSize: CGFloat(UserDefaults.standard.float(forKey: "SegmentFontSizeSettingKey")))
         label.textAlignment = .center
-//        label.layer.backgroundColor = UIColor.lightGray.cgColor
         label.layer.masksToBounds = true
         return label
     }()
@@ -43,10 +42,10 @@ class WordCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
-    func configUI(model: WordModel) -> () {
+    func configUI(model: WordModel, selected: Bool) -> () {
         titleLabel.text = model.cont
         
-        bgimgv.image = model.cornerBgImg
+        bgimgv.image = selected ? model.cornerBgImg_Selected : model.cornerBgImg
     }
     
 }

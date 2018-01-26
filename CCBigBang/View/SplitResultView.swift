@@ -274,7 +274,7 @@ extension SplitResultView: UICollectionViewDelegateFlowLayout, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(WordCell.self), for: indexPath) as! WordCell
-        cell.configUI(model: dataSource[indexPath.item])
+        cell.configUI(model: dataSource[indexPath.item], selected: selectedPaths.contains(indexPath))
         
         if isPanning {
             if isPanDeleting {
