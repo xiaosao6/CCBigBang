@@ -23,4 +23,14 @@
  */
 - (UIImage *)roundCorner:(CGFloat)radius;
 
+
+/**
+ 高斯模糊图片
+
+ @param blurRadius 模糊半径
+ @param saturationDeltaFactor 饱和度因子
+ @return 模糊后的图片
+ */
+- (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius saturationDeltaFactor:(CGFloat)saturationDeltaFactor;
+
 @end

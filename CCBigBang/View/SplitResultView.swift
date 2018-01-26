@@ -92,7 +92,7 @@ class SplitResultView: UIView {
         self.tag = splitViewTag
         
         //模糊背景
-        let effectView = UIVisualEffectView.init(effect: UIBlurEffect.init(style: .extraLight))
+        let effectView = UIVisualEffectView.init(effect: UIBlurEffect.init(style: .light))
         effectView.frame = frame
         self.addSubview(effectView)
         
@@ -125,27 +125,23 @@ class SplitResultView: UIView {
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     func show(inView: UIView?) -> () {
-        inView?.addSubview(self)
+        guard let view = inView else { return }
         
         collView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             let contentH = self.collView.contentSize.height; let max_H = self.bounds.height * 0.5
             let minH = contentH < max_H ? contentH : max_H
             self.collView.snp.updateConstraints { (make) in
                 make.height.equalTo(minH)
             }
-            
-            let centerIndex = self.collView.indexPathsForVisibleItems.count/2
-            guard let centerCell = self.collView.cellForItem(at: IndexPath(item: centerIndex, section: 0)) else { return }
-            
-            for cell in self.collView.visibleCells {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0012 * distance(cell, viewB: centerCell)) {
-                    cell.transform = CGAffineTransform.init(scaleX: 0.7, y: 0.5)
-                    UIView.animate(withDuration: 0.2, animations: {
-                        cell.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-                    })
-                }
-            }
+        }
+
+        self.alpha = 0
+        self.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+        view.addSubview(self)
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1
+            self.transform = CGAffineTransform.init(scaleX: 1, y: 1)
         }
     }
     

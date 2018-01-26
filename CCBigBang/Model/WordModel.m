@@ -37,7 +37,7 @@
     self.rectSize = CGSizeMake(size.width + 18, size.height + 18 * 0.5);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.cornerBgImg = [[UIImage imageWithColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1] Size:self.rectSize] roundCorner:8];
+        self.cornerBgImg = [[UIImage imageWithColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1] Size:self.rectSize] roundCorner:8];
 
         NSString *cString = [[NSUserDefaults standardUserDefaults] stringForKey:@"SegmentCellBgColorSettingKey"];
         if (cString.length < 6)
