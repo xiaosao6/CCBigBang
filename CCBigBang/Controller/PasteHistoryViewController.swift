@@ -14,9 +14,9 @@ let pasteHistoryCacheKey = "PasteHistoryCacheKey"
 /// 剪贴板历史界面
 class PasteHistoryViewController: UIViewController {
     
-    fileprivate var historySource = [Dictionary<String, Date>]()
+    fileprivate var historySource = [Dictionary<String, String>]() // key"文本", value:"1月31日"
     
-    lazy var dateFormatter: DateFormatter = {
+    lazy var _dateFormatter: DateFormatter = {
         let formatter = DateFormatter.init()
         formatter.dateFormat = "M月d日" // "M月d日 HH:mm"
         return formatter
@@ -55,7 +55,7 @@ class PasteHistoryViewController: UIViewController {
         }
         
         if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) {
-            historySource = arr as! Array<[String:Date]>
+            historySource = arr as! Array<[String:String]>
         }
     }
     
@@ -68,7 +68,7 @@ class PasteHistoryViewController: UIViewController {
             return dict.keys.first ?? ""
         }).contains(tmpString) { return }
         
-        historySource.insert([tmpString: Date.init()], at: 0)
+        historySource.insert([tmpString: _dateFormatter.string(from: Date())], at: 0)
         if historySource.count > UserDefaults.standard.integer(forKey: "PasteHistorySizeSettingKey") { historySource.removeLast() }
         
         refreshHistoryCache(newStrs: historySource)
@@ -76,7 +76,7 @@ class PasteHistoryViewController: UIViewController {
     }
     
     //MARK: ------------------------ Private
-    fileprivate func refreshHistoryCache(newStrs: [[String:Date]]?) -> () {
+    fileprivate func refreshHistoryCache(newStrs: [[String:String]]?) -> () {
         UserDefaults.standard.set(newStrs, forKey: pasteHistoryCacheKey)
         UserDefaults.standard.synchronize()
     }
@@ -102,7 +102,7 @@ extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(PasteHistoryCell.self), for: indexPath) as! PasteHistoryCell
         cell.contentLabel.text = historySource[indexPath.row].keys.first
-        cell.timeLabel.text = dateFormatter.string(from: historySource[indexPath.row].values.first ?? Date())
+        cell.timeLabel.text = historySource[indexPath.row].values.first
         return cell
     }
     
