@@ -39,7 +39,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let tmpcollView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         tmpcollView.showsVerticalScrollIndicator = false
         tmpcollView.allowsMultipleSelection = true
-        tmpcollView.backgroundColor = UIColor.white
+        tmpcollView.backgroundColor = UIColor.clear
         tmpcollView.delegate = self; tmpcollView.dataSource = self
         tmpcollView.register(ExtWordCell.self, forCellWithReuseIdentifier: NSStringFromClass(ExtWordCell.self))
         return tmpcollView
@@ -47,15 +47,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshData()
-    }
-    
-    fileprivate func initUI() -> () {
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         }
@@ -64,6 +55,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         collView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview().inset(15)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshData()
     }
     
     fileprivate func refreshData() -> () {
@@ -85,17 +81,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    @objc private func setCellSelection(cell:UICollectionViewCell?, selected: Bool) -> () {
-        cell?.contentView.backgroundColor = selected ? UIColor.blue : UIColor.init(white: 0.5, alpha: 0.3)
+    @objc private func setCellSelection(cell:UICollectionViewCell, path:IndexPath, selected: Bool) -> () {
+        cell.contentView.backgroundColor = selected ? UIColor.colorOfRGB(hex: "#007aff") : UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
     }
     
     @objc fileprivate func toggleSelectState(_ indexPath: IndexPath) -> () {
-        let cell = collView.cellForItem(at: indexPath)
+        guard let cell = collView.cellForItem(at: indexPath) else { return }
         if selectedPaths.contains(indexPath) {
-            setCellSelection(cell: cell, selected: false)
+            setCellSelection(cell: cell, path: indexPath, selected: false)
             selectedPaths.remove(indexPath)
         } else {
-            setCellSelection(cell: cell, selected: true)
+            setCellSelection(cell: cell, path: indexPath, selected: true)
             selectedPaths.insert(indexPath)
         }
     }
@@ -127,10 +123,7 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(ExtWordCell.self), for: indexPath) as! ExtWordCell
-        cell.configUI(text: dataSource[indexPath.item].cont)
-        
-        let selected = selectedPaths.contains(indexPath)
-        setCellSelection(cell: cell, selected: selected)
+        cell.configUI(model: dataSource[indexPath.item], selected: selectedPaths.contains(indexPath))
         return cell
     }
     

@@ -5,3 +5,6 @@
 #import "HttpUtil.h"
 #import "WordModel.h"
 #import "HttpRequest.h"
+
+#import "LocalSegmentor.h"
+#import "UIImage+CC_Category.h"

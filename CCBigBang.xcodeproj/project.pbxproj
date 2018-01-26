@@ -23,6 +23,10 @@
 		4589AAE0200F3FB30095158A /* RoundColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4589AADF200F3FB30095158A /* RoundColorPicker.m */; };
 		4589AAE2200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
 		4589AAE3200F40760095158A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589AAE1200F40750095158A /* palette.png */; };
+		45ADA701201B0FF600EA950F /* LocalSegmentor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 451334A21FFF6C40000EF74D /* LocalSegmentor.mm */; };
+		45ADA702201B103300EA950F /* Segmentor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4513347D1FFF6A5E000EF74D /* Segmentor.cpp */; };
+		45ADA703201B116F00EA950F /* iosjieba.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4513347C1FFF6A5E000EF74D /* iosjieba.bundle */; };
+		45ADA704201B142100EA950F /* UIImage+CC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE9042003719300D4B096 /* UIImage+CC_Category.m */; };
 		45C27E07201971DF008AB6D4 /* ResultTopButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C27E06201971DF008AB6D4 /* ResultTopButtonsView.swift */; };
 		45DBE8BD20033FB600D4B096 /* UITextView+ZWPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BC20033FB600D4B096 /* UITextView+ZWPlaceHolder.m */; };
 		45DBE8BF2003459600D4B096 /* SplitResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DBE8BE2003459600D4B096 /* SplitResultView.swift */; };
@@ -516,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45ADA703201B116F00EA950F /* iosjieba.bundle in Resources */,
 				45F9597F1FFE0A16004A1305 /* MainInterface.storyboard in Resources */,
 				4589AAE3200F40760095158A /* palette.png in Resources */,
 			);
@@ -657,6 +662,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45ADA704201B142100EA950F /* UIImage+CC_Category.m in Sources */,
+				45ADA702201B103300EA950F /* Segmentor.cpp in Sources */,
+				45ADA701201B0FF600EA950F /* LocalSegmentor.mm in Sources */,
 				45F9597C1FFE0A16004A1305 /* TodayViewController.swift in Sources */,
 				451333F71FFF1961000EF74D /* HttpRequest.m in Sources */,
 				451333F61FFF1961000EF74D /* HttpUtil.m in Sources */,
