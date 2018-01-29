@@ -14,7 +14,7 @@ let pasteHistoryCacheKey = "PasteHistoryCacheKey"
 /// 剪贴板历史界面
 class PasteHistoryViewController: UIViewController {
     
-    fileprivate var historySource = [Dictionary<String, String>]() // key"文本", value:"1月31日"
+    fileprivate var historySource = [String]() //[Dictionary<String, String>]() // key"文本", value:"1月31日"
     
     lazy var _dateFormatter: DateFormatter = {
         let formatter = DateFormatter.init()
@@ -55,7 +55,7 @@ class PasteHistoryViewController: UIViewController {
         }
         
         if let arr = UserDefaults.standard.array(forKey: pasteHistoryCacheKey) {
-            historySource = arr as! Array<[String:String]>
+            historySource = arr as! Array<String>
         }
     }
     
@@ -64,11 +64,9 @@ class PasteHistoryViewController: UIViewController {
         
         let tmpString = UIPasteboard.general.string ?? ""
         if tmpString.count == 0 { return }
-        if historySource.map({ (dict) -> String in
-            return dict.keys.first ?? ""
-        }).contains(tmpString) { return }
+        if historySource.contains(tmpString) { return }
         
-        historySource.insert([tmpString: _dateFormatter.string(from: Date())], at: 0)
+        historySource.insert(tmpString, at: 0)
         if historySource.count > UserDefaults.standard.integer(forKey: "PasteHistorySizeSettingKey") { historySource.removeLast() }
         
         refreshHistoryCache(newStrs: historySource)
@@ -76,7 +74,7 @@ class PasteHistoryViewController: UIViewController {
     }
     
     //MARK: ------------------------ Private
-    fileprivate func refreshHistoryCache(newStrs: [[String:String]]?) -> () {
+    fileprivate func refreshHistoryCache(newStrs: [String]?) -> () {
         UserDefaults.standard.set(newStrs, forKey: pasteHistoryCacheKey)
         UserDefaults.standard.synchronize()
     }
@@ -101,8 +99,8 @@ extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(PasteHistoryCell.self), for: indexPath) as! PasteHistoryCell
-        cell.contentLabel.text = historySource[indexPath.row].keys.first
-        cell.timeLabel.text = historySource[indexPath.row].values.first
+        cell.contentLabel.text = historySource[indexPath.row]
+//        cell.timeLabel.text = historySource[indexPath.row].values.first
         return cell
     }
     
@@ -111,7 +109,7 @@ extension PasteHistoryViewController: UITableViewDelegate, UITableViewDataSource
         
         if let centerNavVC:UINavigationController = self.viewDeckController?.centerViewController as? UINavigationController,
            let centerVC:ViewController = centerNavVC.viewControllers.first as? ViewController {
-            centerVC.inputTV.text = historySource[indexPath.row].keys.first
+            centerVC.inputTV.text = historySource[indexPath.row]
             self.viewDeckController?.closeSide(true)
         }
     }
