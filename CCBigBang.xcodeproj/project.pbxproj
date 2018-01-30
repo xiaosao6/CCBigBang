@@ -10,6 +10,7 @@
 		26BD753653D6C23A3F268C8A /* Pods_CCBigBang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B2D019494A087155AF63AD /* Pods_CCBigBang.framework */; };
 		4501825F202005D8004CB372 /* NSString+CC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4501825E202005D8004CB372 /* NSString+CC_Category.m */; };
 		45018260202005D8004CB372 /* NSString+CC_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4501825E202005D8004CB372 /* NSString+CC_Category.m */; };
+		45116B802020681900C1E595 /* ResultTopButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C27E06201971DF008AB6D4 /* ResultTopButtonsView.swift */; };
 		451333F61FFF1961000EF74D /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F31FFF1960000EF74D /* HttpUtil.m */; };
 		451333F71FFF1961000EF74D /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333F51FFF1961000EF74D /* HttpRequest.m */; };
 		451333FB1FFF1982000EF74D /* WordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451333FA1FFF1982000EF74D /* WordModel.m */; };
@@ -669,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45116B802020681900C1E595 /* ResultTopButtonsView.swift in Sources */,
 				45ADA704201B142100EA950F /* UIImage+CC_Category.m in Sources */,
 				45ADA702201B103300EA950F /* Segmentor.cpp in Sources */,
 				45018260202005D8004CB372 /* NSString+CC_Category.m in Sources */,

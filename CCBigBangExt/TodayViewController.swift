@@ -30,7 +30,9 @@ func isCell(cell: UICollectionViewCell, containsPoint: CGPoint) -> Bool {
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     fileprivate var dataSource = [WordModel]()
-    fileprivate var selectedPaths = Set<IndexPath>()
+    fileprivate var selectedPaths = Set<IndexPath>(){
+        didSet{ topFuncView.isHidden = (selectedPaths.count == 0) }
+    }
     
     fileprivate lazy var collView : UICollectionView = {
         let flowLayout = UICollectionViewLeftAlignedLayout.init()
@@ -45,15 +47,30 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         return tmpcollView
     }()
     
+    lazy var topFuncView: ResultTopButtonsView = {
+        let tmpv = ResultTopButtonsView.init(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width-15, height: 30))
+        tmpv.delegate = self
+        tmpv.isHidden = true
+        return tmpv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOSApplicationExtension 10.0, *) {
             self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         }
         
+        self.view.addSubview(topFuncView)
+        topFuncView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().inset(5)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(30)
+        }
+        
         self.view.addSubview(collView)
         collView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().inset(15)
+            make.top.equalTo(topFuncView.snp.bottom).offset(10)
+            make.left.right.bottom.equalToSuperview().inset(10)
         }
     }
     
@@ -91,6 +108,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if selectedPaths.contains(indexPath) {
             setCellSelection(cell: cell, path: indexPath, selected: false)
             selectedPaths.remove(indexPath)
+            topFuncView.isHidden = (selectedPaths.count == 0)
         } else {
             setCellSelection(cell: cell, path: indexPath, selected: true)
             selectedPaths.insert(indexPath)
@@ -136,4 +154,38 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionV
         toggleSelectState(indexPath)
     }
     
+}
+
+extension TodayViewController: ResultTopButtonsProtocol{
+    func translateClicked(_ btn: UIButton) {
+        let rvc = UIReferenceLibraryViewController.init(term: currentSelectedStrings())
+//        UIApplication.shared.keyWindow?.rootViewController?.present(rvc, animated: true, completion: nil)
+    }
+    
+    func searchClicked(_ btn: UIButton) {
+        let content = (currentSelectedStrings() as NSString).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: "https://m.baidu.com/s?word=" + (content ?? ""))!
+        self.extensionContext?.open(url, completionHandler: nil)
+    }
+    
+    func shareClicked(_ btn: UIButton) {
+        let textToShare = currentSelectedStrings()
+        let avc = UIActivityViewController.init(activityItems: [textToShare], applicationActivities: nil)
+//        UIApplication.shared.keyWindow?.rootViewController?.present(avc, animated: true, completion: nil)
+    }
+    
+    func copyClicked(_ btn: UIButton) {
+        UIPasteboard.general.string = currentSelectedStrings()
+//        UIApplication.shared.keyWindow?.makeToast("文本已复制", duration: 0.8, position: CSToastPositionCenter)
+    }
+    
+    private func currentSelectedStrings() -> String {
+        var selectedStrings = [String]()
+        for model in dataSource {
+            if selectedPaths.contains(IndexPath(item: dataSource.index(of: model)!, section: 0)){
+                selectedStrings.append(model.cont)
+            }
+        }
+        return selectedStrings.joined(separator: "")
+    }
 }
