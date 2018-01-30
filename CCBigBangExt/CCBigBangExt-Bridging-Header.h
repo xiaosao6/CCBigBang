@@ -8,3 +8,4 @@
 
 #import "LocalSegmentor.h"
 #import "UIImage+CC_Category.h"
+#import "NSString+CC_Category.h"

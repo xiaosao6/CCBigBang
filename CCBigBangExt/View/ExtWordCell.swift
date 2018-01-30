@@ -58,7 +58,7 @@ class ExtWordCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.backgroundColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        self.contentView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         self.contentView.layer.cornerRadius = 8
         
         self.contentView.addSubview(titleLabel)
@@ -72,8 +72,8 @@ class ExtWordCell: UICollectionViewCell {
     
     func configUI(model: WordModel, selected: Bool) -> () {
         titleLabel.text = model.cont
-
-        self.contentView.backgroundColor = selected ? UIColor.colorOfRGB(hex: "#007aff") : UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        let unselColor = (model.cont as NSString).isPunctuation() ? UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1) : UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        self.contentView.backgroundColor = selected ? UIColor.colorOfRGB(hex: "#007aff") : unselColor
     }
     
 }

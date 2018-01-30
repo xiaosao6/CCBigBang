@@ -82,7 +82,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     @objc private func setCellSelection(cell:UICollectionViewCell, path:IndexPath, selected: Bool) -> () {
-        cell.contentView.backgroundColor = selected ? UIColor.colorOfRGB(hex: "#007aff") : UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        let unselColor = (dataSource[path.item].cont as NSString).isPunctuation() ? UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1) : UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        cell.contentView.backgroundColor = selected ? UIColor.colorOfRGB(hex: "#007aff") : unselColor
     }
     
     @objc fileprivate func toggleSelectState(_ indexPath: IndexPath) -> () {
