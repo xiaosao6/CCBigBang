@@ -9,6 +9,7 @@
 #import "WordModel.h"
 #import <MJExtension/NSObject+MJKeyValue.h>
 #import "UIImage+CC_Category.h"
+#import "NSString+CC_Category.h"
 
 
 @interface WordModel ()
@@ -37,7 +38,8 @@
     self.rectSize = CGSizeMake(size.width + 18, size.height + 18 * 0.5);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.cornerBgImg = [[UIImage imageWithColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1] Size:self.rectSize] roundCorner:8];
+        UIColor *unselColor = [_cont isPunctuation] ? [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1] : [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        self.cornerBgImg = [[UIImage imageWithColor:unselColor Size:self.rectSize] roundCorner:8];
 
         NSString *cString = [[NSUserDefaults standardUserDefaults] stringForKey:@"SegmentCellBgColorSettingKey"];
         if (cString.length < 6)
