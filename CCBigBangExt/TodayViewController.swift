@@ -10,6 +10,7 @@ import UIKit
 import NotificationCenter
 import UICollectionViewLeftAlignedLayout
 import MBProgressHUD
+import Toast
 
 let s_width  = UIScreen.main.bounds.width
 let s_height = UIScreen.main.bounds.height
@@ -159,7 +160,7 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 extension TodayViewController: ResultTopButtonsProtocol{
     func translateClicked(_ btn: UIButton) {
         let rvc = UIReferenceLibraryViewController.init(term: currentSelectedStrings())
-//        UIApplication.shared.keyWindow?.rootViewController?.present(rvc, animated: true, completion: nil)
+        self.present(rvc, animated: true, completion: nil)
     }
     
     func searchClicked(_ btn: UIButton) {
@@ -171,12 +172,12 @@ extension TodayViewController: ResultTopButtonsProtocol{
     func shareClicked(_ btn: UIButton) {
         let textToShare = currentSelectedStrings()
         let avc = UIActivityViewController.init(activityItems: [textToShare], applicationActivities: nil)
-//        UIApplication.shared.keyWindow?.rootViewController?.present(avc, animated: true, completion: nil)
+        self.present(avc, animated: true, completion: nil)
     }
     
     func copyClicked(_ btn: UIButton) {
         UIPasteboard.general.string = currentSelectedStrings()
-//        UIApplication.shared.keyWindow?.makeToast("文本已复制", duration: 0.8, position: CSToastPositionCenter)
+        self.view.makeToast("文本已复制", duration: 0.8, position: CSToastPositionCenter)
     }
     
     private func currentSelectedStrings() -> String {
