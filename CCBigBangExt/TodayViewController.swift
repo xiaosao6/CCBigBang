@@ -47,7 +47,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         tmpcollView.register(ExtWordCell.self, forCellWithReuseIdentifier: NSStringFromClass(ExtWordCell.self))
         return tmpcollView
     }()
-    
+
     lazy var topFuncView: ResultTopButtonsView = {
         let tmpv = ResultTopButtonsView.init(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width-15, height: 30))
         tmpv.delegate = self
